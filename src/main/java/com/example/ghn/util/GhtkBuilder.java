@@ -31,6 +31,16 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
     public GhtkOrder buildOrder(Order order) {
 
         GhtkOrder ghtkOrder = new GhtkOrder();
+        List<GhtkProduct> ghtkProducts = createGhtkProducts(order);
+        ghtkOrder.setProducts(ghtkProducts);
+
+        GhtkOrderDetail ghtkOrderDetail = createGhtkOrderDetail(order);
+        ghtkOrder.setOrderDetail(ghtkOrderDetail);
+
+        return ghtkOrder;
+    }
+
+    private List<GhtkProduct> createGhtkProducts(Order order) {
         List<OrderProduct> orderProducts = order.getOrderProducts();
 
         Collections.sort(orderProducts, (OrderProduct o1, OrderProduct o2) ->
@@ -41,13 +51,15 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
 
         List<Product> products = productRepository.findAllByIdInOrderByIdAsc(productIds);
 
-        List<GhtkProduct> ghtkProducts = IntStream.range(0, products.size()).mapToObj(i -> {
+        return IntStream.range(0, products.size()).mapToObj(i -> {
             Product product = products.get(i);
             int quantity = orderProducts.get(i).getQuantity();
             float weightInKg = (float) (product.getWeight() / 1000.00);
             return new GhtkProduct(product.getName(), product.getPrice(), weightInKg, quantity);
         }).collect(Collectors.toList());
-        ghtkOrder.setProducts(ghtkProducts);
+    }
+
+    private GhtkOrderDetail createGhtkOrderDetail(Order order) {
         OrderDetail orderDetail = order.getOrderDetail();
         GhtkOrderDetail ghtkOrderDetail = new GhtkOrderDetail();
         ghtkOrderDetail.setFromPerson(orderDetail.getFromPerson());
@@ -72,15 +84,6 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
         ghtkOrderDetail.setDropTel(orderDetail.getDropTel());
         ghtkOrderDetail.setNote(orderDetail.getNote());
         ghtkOrderDetail.setId(orderDetail.getDummyId());
-
-        ghtkOrder.setOrderDetail(ghtkOrderDetail);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            System.out.println(objectMapper.writeValueAsString(ghtkOrder));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return ghtkOrder;
+        return ghtkOrderDetail;
     }
 }
