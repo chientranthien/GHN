@@ -7,6 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * Created by chien on 7/29/17.
  */
@@ -23,7 +25,7 @@ public class GhtkController {
 
 
     @RequestMapping(value = "fee", method = RequestMethod.POST)
-    public OrderFeeResponse calculateServiceFee(@RequestBody OrderSummary orderSummary) {
+    public OrderFeeResponse calculateServiceFee(@RequestBody @Valid OrderSummary orderSummary) {
         return ghtkService.calculateServiceFee(orderSummary);
     }
 
@@ -47,7 +49,7 @@ public class GhtkController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public OrderResponse order(@RequestBody Order order) {
+    public OrderResponse order(@RequestBody @Valid  Order order) {
         return ghtkService.order(order);
     }
 
