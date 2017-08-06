@@ -1,0 +1,9 @@
+version: 0.0.1-SNAPSHOT
+os: linux
+files:
+  - source: /target/shipping-integrator-0.0.1-SNAPSHOT.jar
+    destination: /tmp/codedeploy-deployment-staging-area/
+hooks:
+  ApplicationStart:
+    - location: mvn spring-boot:run
+      timeout: 300
