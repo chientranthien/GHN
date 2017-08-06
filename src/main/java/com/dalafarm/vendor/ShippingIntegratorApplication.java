@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShippingIntegratorApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GhnApplication.class, args);
+		SpringApplication.run(ShippingIntegratorApplication.class, args);
 	}
 }
