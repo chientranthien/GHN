@@ -5,6 +5,6 @@ ghtk:
 spring:
   jpa.hibernate.ddl-auto: update
   datasource:
-    url: jdbc:mysql://dalafarm-db.crvptvmickvz.ap-southeast-1.rds.amazonaws.com:3306/ghn?useUnicode=yes&characterEncoding=UTF-8
+    url: jdbc:mysql://dalafarm-db.crvptvmickvz.ap-southeast-1.rds.amazonaws.com:3306/GHN?useUnicode=yes&characterEncoding=UTF-8
     username: dalafarm
     password: d4l4f4rm
