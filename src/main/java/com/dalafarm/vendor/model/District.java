@@ -1,4 +1,4 @@
-package com.example.ghn.model;
+package com.dalafarm.vendor.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

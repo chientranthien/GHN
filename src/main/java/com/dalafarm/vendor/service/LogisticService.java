@@ -1,7 +1,7 @@
-package com.example.ghn.service;
+package com.dalafarm.vendor.service;
 
 
-import com.example.ghn.model.*;
+import com.dalafarm.vendor.model.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**

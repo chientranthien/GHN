@@ -1,10 +1,10 @@
-package com.example.ghn.util;
+package com.dalafarm.vendor.util;
 
-import com.example.ghn.model.*;
-import com.example.ghn.model.ghtk.GhtkOrderFeeResponse;
-import com.example.ghn.model.ghtk.GhtkOrderResponse;
-import com.example.ghn.model.ghtk.GhtkOrderStatusResponse;
-import com.example.ghn.repository.StatusRepository;
+import com.dalafarm.vendor.model.*;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderFeeResponse;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderResponse;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderStatusResponse;
+import com.dalafarm.vendor.repository.StatusRepository;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;

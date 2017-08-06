@@ -1,4 +1,4 @@
-package com.example.ghn.model;
+package com.dalafarm.vendor.model;
 
 import javax.validation.constraints.NotNull;
 

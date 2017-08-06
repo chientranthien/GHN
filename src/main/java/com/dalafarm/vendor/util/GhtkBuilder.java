@@ -1,11 +1,11 @@
-package com.example.ghn.util;
+package com.dalafarm.vendor.util;
 
-import com.example.ghn.model.*;
-import com.example.ghn.model.ghtk.GhtkOrder;
-import com.example.ghn.model.ghtk.GhtkOrderDetail;
-import com.example.ghn.model.ghtk.GhtkProduct;
-import com.example.ghn.repository.DistrictRepository;
-import com.example.ghn.repository.ProductRepository;
+import com.dalafarm.vendor.model.*;
+import com.dalafarm.vendor.model.ghtk.GhtkOrder;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderDetail;
+import com.dalafarm.vendor.model.ghtk.GhtkProduct;
+import com.dalafarm.vendor.repository.DistrictRepository;
+import com.dalafarm.vendor.repository.ProductRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

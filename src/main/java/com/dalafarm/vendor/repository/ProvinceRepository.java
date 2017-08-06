@@ -1,6 +1,6 @@
-package com.example.ghn.repository;
+package com.dalafarm.vendor.repository;
 
-import com.example.ghn.model.Province;
+import com.dalafarm.vendor.model.Province;
 import org.springframework.data.repository.CrudRepository;
 
 /**

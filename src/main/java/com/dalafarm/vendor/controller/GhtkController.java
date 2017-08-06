@@ -1,8 +1,8 @@
-package com.example.ghn.controller;
+package com.dalafarm.vendor.controller;
 
-import com.example.ghn.model.*;
-import com.example.ghn.repository.OrderRepository;
-import com.example.ghn.service.LogisticService;
+import com.dalafarm.vendor.model.*;
+import com.dalafarm.vendor.repository.OrderRepository;
+import com.dalafarm.vendor.service.LogisticService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.example.ghn.model.ghtk;
+package com.dalafarm.vendor.model.ghtk;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

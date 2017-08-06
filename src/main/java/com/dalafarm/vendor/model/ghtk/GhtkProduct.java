@@ -1,4 +1,4 @@
-package com.example.ghn.model.ghtk;
+package com.dalafarm.vendor.model.ghtk;
 
 /**
  * Created by chien on 8/5/17.

@@ -1,6 +1,6 @@
-package com.example.ghn.util;
+package com.dalafarm.vendor.util;
 
-import com.example.ghn.model.Order;
+import com.dalafarm.vendor.model.Order;
 
 /**
  * Created by chien on 8/4/17.

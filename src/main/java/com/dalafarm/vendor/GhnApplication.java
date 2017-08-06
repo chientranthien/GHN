@@ -1,4 +1,4 @@
-package com.example.ghn;
+package com.dalafarm.vendor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

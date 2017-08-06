@@ -1,9 +1,9 @@
-package com.example.ghn.controller;
+package com.dalafarm.vendor.controller;
 
-import com.example.ghn.model.District;
-import com.example.ghn.model.Province;
-import com.example.ghn.repository.DistrictRepository;
-import com.example.ghn.repository.ProvinceRepository;
+import com.dalafarm.vendor.model.District;
+import com.dalafarm.vendor.model.Province;
+import com.dalafarm.vendor.repository.DistrictRepository;
+import com.dalafarm.vendor.repository.ProvinceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

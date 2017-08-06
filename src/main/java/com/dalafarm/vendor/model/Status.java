@@ -1,4 +1,4 @@
-package com.example.ghn.model;
+package com.dalafarm.vendor.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

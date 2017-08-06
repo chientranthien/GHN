@@ -1,4 +1,4 @@
-package com.example.ghn;
+package com.dalafarm.vendor;
 
 import com.example.ghn.model.Order;
 import com.example.ghn.repository.OrderRepository;

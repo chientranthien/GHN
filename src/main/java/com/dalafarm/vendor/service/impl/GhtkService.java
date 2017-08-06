@@ -1,15 +1,15 @@
-package com.example.ghn.service.ipml;
+package com.dalafarm.vendor.service.ipml;
 
-import com.example.ghn.model.*;
-import com.example.ghn.model.ghtk.GhtkOrder;
-import com.example.ghn.model.ghtk.GhtkOrderFeeResponse;
-import com.example.ghn.model.ghtk.GhtkOrderResponse;
-import com.example.ghn.model.ghtk.GhtkOrderStatusResponse;
-import com.example.ghn.repository.DistrictRepository;
-import com.example.ghn.repository.OrderRepository;
-import com.example.ghn.repository.StatusRepository;
-import com.example.ghn.service.LogisticService;
-import com.example.ghn.util.*;
+import com.dalafarm.vendor.model.*;
+import com.dalafarm.vendor.model.ghtk.GhtkOrder;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderFeeResponse;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderResponse;
+import com.dalafarm.vendor.model.ghtk.GhtkOrderStatusResponse;
+import com.dalafarm.vendor.repository.DistrictRepository;
+import com.dalafarm.vendor.repository.OrderRepository;
+import com.dalafarm.vendor.repository.StatusRepository;
+import com.dalafarm.vendor.service.LogisticService;
+import com.dalafarm.vendor.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

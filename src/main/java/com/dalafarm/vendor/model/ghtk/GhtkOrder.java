@@ -1,7 +1,7 @@
-package com.example.ghn.model.ghtk;
+package com.dalafarm.vendor.model.ghtk;
 
-import com.example.ghn.model.OrderDetail;
-import com.example.ghn.model.Product;
+import com.dalafarm.vendor.model.OrderDetail;
+import com.dalafarm.vendor.model.Product;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.Embedded;

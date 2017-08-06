@@ -1,6 +1,6 @@
-package com.example.ghn.repository;
+package com.dalafarm.vendor.repository;
 
-import com.example.ghn.model.Order;
+import com.dalafarm.vendor.model.Order;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

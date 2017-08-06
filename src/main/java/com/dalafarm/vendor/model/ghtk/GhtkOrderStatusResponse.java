@@ -1,6 +1,6 @@
-package com.example.ghn.model.ghtk;
+package com.dalafarm.vendor.model.ghtk;
 
-import com.example.ghn.model.Order;
+import com.dalafarm.vendor.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
