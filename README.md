@@ -1,6 +1,6 @@
 **Calculate order fee**
 ----
-Forward the request to suppliers such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then response the estimated fee.
+Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then response the estimated fee.
 * **URL**
  /v1/orders/fee
 
@@ -43,9 +43,9 @@ Forward the request to suppliers such as Giao Hang Nhanh or Giao Hang Tiet Kiem.
 * **Notes:**
 
 
-**Order**
+**Book shipping pick up for order**
 ----
-Forward the order request to suppliers such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then store order into databse
+Create a booking for shipping based on new order with logistic vendor such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then store order into database
 * **URL**
  /v1/orders
 
@@ -137,7 +137,7 @@ Forward the order request to suppliers such as Giao Hang Nhanh or Giao Hang Tiet
 
 **GET ORDER STATUS**
 ----
-Forward the request to suppliers such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then response the order status.
+Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then response the order status.
 * **URL**
  /v1/orders/:supplierOrderId/status
 
