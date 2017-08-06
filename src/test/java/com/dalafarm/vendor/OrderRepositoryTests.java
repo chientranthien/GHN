@@ -1,7 +1,7 @@
 package com.dalafarm.vendor;
 
-import com.example.ghn.model.Order;
-import com.example.ghn.repository.OrderRepository;
+import com.dalafarm.vendor.model.Order;
+import com.dalafarm.vendor.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

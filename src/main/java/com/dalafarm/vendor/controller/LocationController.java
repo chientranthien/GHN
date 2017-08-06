@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("v1")
-public class LocationContronller {
+public class LocationController {
 
     @Autowired
     ProvinceRepository provinceRepository;
