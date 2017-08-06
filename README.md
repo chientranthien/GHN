@@ -161,3 +161,65 @@ Forward the request to suppliers such as Giao Hang Nhanh or Giao Hang Tiet Kiem.
     curl -X GET \
       http://localhost:8080/v1/orders/S78169.853420/status
 * **Notes:**
+
+
+**GET ALL PROVINCE**
+----
+* **URL**
+ /v1/provinces
+
+* **Method:**
+  `GET`
+ 
+
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `[
+                      {
+                          "id": "01",
+                          "name": "Hà Nội"
+                      },
+                      {
+                          "id": "02",
+                          "name": "Hà Giang"
+                      }...]`
+ 
+
+* **Sample Call:**
+
+    ``` 
+    curl -X GET \
+      http://localhost:8080/v1/provinces
+* **Notes:**
+
+**GET DISTRICTS BY PROVINCEID**
+----
+* **URL**
+ /v1/districts
+
+* **Method:**
+  `GET`
+ 
+* **Params:**
+  `provinceId: alphanumeric`
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `[
+                      {
+                          "id": "001",
+                          "name": "Ba Đình"
+                      },
+                      {
+                          "id": "002",
+                          "name": "Hoàn Kiếm"
+                      }...]`
+ 
+
+* **Sample Call:**
+
+    ``` 
+    curl -X GET \
+      'http://localhost:8080/v1/districts?provinceId=01'
+* **Notes:**
