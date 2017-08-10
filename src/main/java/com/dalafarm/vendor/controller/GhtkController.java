@@ -13,7 +13,7 @@ import javax.validation.Valid;
  * Created by chien on 7/29/17.
  */
 @RestController
-@RequestMapping("v1/orders")
+@RequestMapping("v1/logistic")
 public class GhtkController {
 
 
@@ -24,7 +24,7 @@ public class GhtkController {
     OrderRepository orderRepository;
 
 
-    @RequestMapping(value = "fee", method = RequestMethod.POST)
+    @RequestMapping(value = "shipping-fee", method = RequestMethod.POST)
     public OrderFeeResponse calculateServiceFee(@RequestBody @Valid OrderSummary orderSummary) {
         return ghtkService.calculateServiceFee(orderSummary);
     }
