@@ -11,7 +11,7 @@ import java.util.List;
  * Created by chien on 8/2/17.
  */
 @Entity
-@Table(name = "MY_ORDER")
+@Table(name = "ORDER")
 public class Order {
 
     @Id
