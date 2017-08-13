@@ -125,8 +125,8 @@ public class GhtkService implements LogisticService {
     }
 
     @Override
-    public OrderStatusResponse getOrderStatus(String supplierOrderId) {
-        String url = urlService + "services/shipment/" + supplierOrderId;
+    public OrderStatusResponse getOrderStatus(String orderId) {
+        String url = urlService + "services/shipment/partner_id:" + orderId;
         HttpEntity<?> entity = buildHeaderWithToken();
 
         RestTemplate restTemplate = new RestTemplate();
@@ -135,8 +135,7 @@ public class GhtkService implements LogisticService {
                 entity,
                 GhtkOrderStatusResponse.class).getBody();
 
-
-        return ResponseHelper.buildOerderStatusResponse(statusRepository, ghtkOrderStatusResponse);
+        return ResponseHelper.buildOrderStatusResponse(statusRepository, ghtkOrderStatusResponse);
     }
 
     private HttpEntity<?> buildHeaderWithToken() {

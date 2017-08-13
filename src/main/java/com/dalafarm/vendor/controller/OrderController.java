@@ -6,6 +6,7 @@ import com.dalafarm.vendor.model.OrderStatusResponse;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -41,5 +42,10 @@ public class OrderController {
 	@RequestMapping(value = "order", method = RequestMethod.POST)
 	public OrderResponse order(@RequestBody @Valid Order order) {
 		return ghtkService.order(order);
+	}
+
+	@ExceptionHandler
+	@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Order not found")
+	public void notFoundExceptionHandler(ResourceNotFoundException ex) {
 	}
 }

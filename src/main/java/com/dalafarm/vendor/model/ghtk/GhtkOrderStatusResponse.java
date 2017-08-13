@@ -14,7 +14,7 @@ public class GhtkOrderStatusResponse {
     @JsonProperty("order")
     private Order order;
 
-    public Boolean getSuccess() {
+    public Boolean isSuccess() {
         return success;
     }
 

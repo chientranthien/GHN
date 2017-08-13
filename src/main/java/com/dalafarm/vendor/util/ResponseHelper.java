@@ -1,15 +1,11 @@
 package com.dalafarm.vendor.util;
 
+import com.dalafarm.vendor.controller.ResourceNotFoundException;
 import com.dalafarm.vendor.model.*;
 import com.dalafarm.vendor.model.ghtk.GhtkOrderFeeResponse;
 import com.dalafarm.vendor.model.ghtk.GhtkOrderResponse;
 import com.dalafarm.vendor.model.ghtk.GhtkOrderStatusResponse;
 import com.dalafarm.vendor.repository.StatusRepository;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 /**
  * Created by chien on 8/4/17.
@@ -47,12 +43,15 @@ public class ResponseHelper {
         return order;
     }
 
-    public static OrderStatusResponse buildOerderStatusResponse(StatusRepository repository, GhtkOrderStatusResponse ghtkOrderStatusResponse) {
-        Status status = repository.findByGhtkStatusId(ghtkOrderStatusResponse.getStatus());
-        OrderStatusResponse response = new OrderStatusResponse();
-        response.setId(status.getId());
-        response.setName(status.getName());
-        response.setLastUpdatedDate(ghtkOrderStatusResponse.getUpdatedDate());
-        return response;
+    public static OrderStatusResponse buildOrderStatusResponse(StatusRepository repository, GhtkOrderStatusResponse ghtkOrderStatusResponse) {
+        if (ghtkOrderStatusResponse.isSuccess()) {
+            Status status = repository.findByGhtkStatusId(ghtkOrderStatusResponse.getStatus());
+            OrderStatusResponse response = new OrderStatusResponse();
+            response.setId(status.getId());
+            response.setName(status.getName());
+            response.setLastUpdatedDate(ghtkOrderStatusResponse.getUpdatedDate());
+            return response;
+        }
+        throw new ResourceNotFoundException("Order", ghtkOrderStatusResponse.getMessage());
     }
 }
