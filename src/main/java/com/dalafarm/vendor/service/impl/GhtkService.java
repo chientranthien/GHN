@@ -1,4 +1,4 @@
-package com.dalafarm.vendor.service.ipml;
+package com.dalafarm.vendor.service.impl;
 
 import com.dalafarm.vendor.model.*;
 import com.dalafarm.vendor.model.ghtk.GhtkOrder;
@@ -12,6 +12,7 @@ import com.dalafarm.vendor.service.LogisticService;
 import com.dalafarm.vendor.service.StatusMapper;
 import com.dalafarm.vendor.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -58,19 +59,26 @@ public class GhtkService implements LogisticService {
     @Autowired
     StatusMapper statusMapper;
 
+    @Autowired
+    @Qualifier("tinLogistic")
+    LogisticService logisticService;
+
     @Override
     public OrderFeeResponse calculateServiceFee(OrderSummary orderSummary) {
 
         URI uri = buildlUri(orderSummary);
-
         HttpEntity<?> entity = buildHeaderWithToken();
 
         RestTemplate restTemplate = new RestTemplate();
-        GhtkOrderFeeResponse body = restTemplate.exchange(uri,
+        GhtkOrderFeeResponse response = restTemplate.exchange(uri,
                 HttpMethod.GET,
                 entity,
                 GhtkOrderFeeResponse.class).getBody();
-        return ResponseHelper.buildOrderFeeResponse(body);
+
+        if (response.isDeliverable()) {
+            return ResponseHelper.buildOrderFeeResponse(response);
+        } else
+            return logisticService.calculateServiceFee(orderSummary);
     }
 
     private URI buildlUri(OrderSummary orderSummary) {
