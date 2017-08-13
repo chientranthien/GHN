@@ -23,6 +23,11 @@ public class OrderSummary {
 
     }
 
+    public OrderSummary(String pickupDistrictId, String dropDistrictId, Integer weight) {
+        this.pickupDistrictId = pickupDistrictId;
+        this.dropDistrictId = dropDistrictId;
+        this.weight = weight;
+    }
 
     public Integer getSupplierId() {
         return supplierId;

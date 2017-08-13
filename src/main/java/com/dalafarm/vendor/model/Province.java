@@ -1,8 +1,8 @@
 package com.dalafarm.vendor.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 /**
  * Created by chien on 8/5/17.
@@ -13,7 +13,12 @@ public class Province {
     @Column(name = "provinceid")
     private String id;
 
-    private  String name;
+    private String name;
+
+    @JsonIgnore
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TIN_LOGISTIC_GROUP")
+    private TinLogisticGroup group;
 
     public String getId() {
         return id;
@@ -29,5 +34,13 @@ public class Province {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public TinLogisticGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(TinLogisticGroup group) {
+        this.group = group;
     }
 }
