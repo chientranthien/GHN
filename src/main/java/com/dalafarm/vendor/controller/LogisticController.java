@@ -14,43 +14,14 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("v1/logistic")
-public class GhtkController {
-
+public class LogisticController {
 
     @Autowired
     LogisticService ghtkService;
 
-    @Autowired
-    OrderRepository orderRepository;
-
-
     @RequestMapping(value = "shipping-fee", method = RequestMethod.POST)
     public OrderFeeResponse calculateServiceFee(@RequestBody @Valid OrderSummary orderSummary) {
         return ghtkService.calculateServiceFee(orderSummary);
-    }
-
-    @RequestMapping("/{id}")
-    public Object getOrder(@PathVariable("id") Long id) {
-
-        return "getOrder";
-
-    }
-
-    @RequestMapping(value = "/{supplierOrderId}/status", method = RequestMethod.GET)
-    public OrderStatusResponse getOrderStatus(@PathVariable("supplierOrderId") String supplierOrderId) {
-
-        return ghtkService.getOrderStatus(supplierOrderId);
-
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public Object getAllOrder() {
-        return orderRepository.findAll();
-    }
-
-    @RequestMapping(method = RequestMethod.PUT)
-    public OrderResponse order(@RequestBody @Valid  Order order) {
-        return ghtkService.order(order);
     }
 
 }
