@@ -5,6 +5,7 @@ import com.dalafarm.vendor.model.OrderResponse;
 import com.dalafarm.vendor.model.OrderStatusResponse;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
+import com.dalafarm.vendor.service.StatusMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

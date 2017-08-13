@@ -149,7 +149,7 @@ Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tie
   
   * **Code:** 200 <br />
     **Content:** `{
-                      "id": 5,
+                      "orderId": 5,
                       "name": "Chưa tiếp nhận",
                       "lastUpdatedDate": "2017-08-05 18:19:01"
                   }`

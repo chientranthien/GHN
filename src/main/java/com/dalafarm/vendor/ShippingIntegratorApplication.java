@@ -22,6 +22,8 @@ public class ShippingIntegratorApplication {
                 registry.addMapping("/v1/provinces").allowedOrigins("https://dalafarm.com.vn","http://preview.dalafarm.com.vn","http://localhost:1313");
                 registry.addMapping("/v1/province/**/districts").allowedOrigins("https://dalafarm.com.vn","http://preview.dalafarm.com.vn","http://localhost:1313");
                 registry.addMapping("/v1/logistic/shipping-fee").allowedOrigins("https://dalafarm.com.vn","http://preview.dalafarm.com.vn","http://localhost:1313");
+                registry.addMapping("/v1/orders").allowedOrigins("https://dalafarm.com.vn","http://preview.dalafarm.com.vn","http://localhost:1313");
+                registry.addMapping("/v1/order/**/*").allowedOrigins("https://dalafarm.com.vn","http://preview.dalafarm.com.vn","http://localhost:1313");
             }
         };
     }

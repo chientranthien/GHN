@@ -1,26 +1,22 @@
 package com.dalafarm.vendor.model;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-
-import javax.persistence.Id;
-
 /**
  * Created by chien on 8/5/17.
  */
 public class OrderStatusResponse {
 
-    private Integer id;
+    private String orderId;
 
     private String name;
 
     private String lastUpdatedDate;
 
-    public Integer getId() {
-        return id;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getName() {

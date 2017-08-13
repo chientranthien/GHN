@@ -6,8 +6,6 @@ import com.dalafarm.vendor.model.ghtk.GhtkOrderDetail;
 import com.dalafarm.vendor.model.ghtk.GhtkProduct;
 import com.dalafarm.vendor.repository.DistrictRepository;
 import com.dalafarm.vendor.repository.ProductRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -83,7 +81,7 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
 
         ghtkOrderDetail.setDropTel(orderDetail.getDropTel());
         ghtkOrderDetail.setNote(orderDetail.getNote());
-        ghtkOrderDetail.setId(orderDetail.getDummyId());
+        ghtkOrderDetail.setId(orderDetail.getOrderId());
         return ghtkOrderDetail;
     }
 }

@@ -9,6 +9,7 @@ import com.dalafarm.vendor.repository.DistrictRepository;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.repository.StatusRepository;
 import com.dalafarm.vendor.service.LogisticService;
+import com.dalafarm.vendor.service.StatusMapper;
 import com.dalafarm.vendor.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -54,6 +55,9 @@ public class GhtkService implements LogisticService {
     @Autowired
     StatusRepository statusRepository;
 
+    @Autowired
+    StatusMapper statusMapper;
+
     @Override
     public OrderFeeResponse calculateServiceFee(OrderSummary orderSummary) {
 
@@ -84,9 +88,6 @@ public class GhtkService implements LogisticService {
     @Override
     public OrderResponse order(Order order) {
 
-
-        generateAndSetDummyId(order);
-
         HttpEntity<?> entity = buildEntityForPost(order);
 
         GhtkOrderResponse body = sendOrderRequestToGhtk(entity);
@@ -112,7 +113,7 @@ public class GhtkService implements LogisticService {
     private void generateAndSetDummyId(Order order) {
         String uuid = UUID.randomUUID().toString();
         OrderDetail orderDetail = order.getOrderDetail();
-        orderDetail.setDummyId(uuid);
+        orderDetail.setOrderId(uuid);
     }
 
     private HttpEntity<?> buildEntityForPost(Order order) {
@@ -135,7 +136,10 @@ public class GhtkService implements LogisticService {
                 entity,
                 GhtkOrderStatusResponse.class).getBody();
 
-        return ResponseHelper.buildOrderStatusResponse(statusRepository, ghtkOrderStatusResponse);
+        OrderStatusResponse orderStatusResponse = ResponseHelper.buildOrderStatusResponse(ghtkOrderStatusResponse);
+        orderStatusResponse.setOrderId(orderId);
+        orderStatusResponse.setName(statusMapper.mapVendorSpecificStatus(ghtkOrderStatusResponse.getStatus(), orderStatusResponse.getName()));
+        return orderStatusResponse;
     }
 
     private HttpEntity<?> buildHeaderWithToken() {

@@ -43,12 +43,10 @@ public class ResponseHelper {
         return order;
     }
 
-    public static OrderStatusResponse buildOrderStatusResponse(StatusRepository repository, GhtkOrderStatusResponse ghtkOrderStatusResponse) {
+    public static OrderStatusResponse buildOrderStatusResponse(GhtkOrderStatusResponse ghtkOrderStatusResponse) {
         if (ghtkOrderStatusResponse.isSuccess()) {
-            Status status = repository.findByGhtkStatusId(ghtkOrderStatusResponse.getStatus());
             OrderStatusResponse response = new OrderStatusResponse();
-            response.setId(status.getId());
-            response.setName(status.getName());
+            response.setName(response.getName());
             response.setLastUpdatedDate(ghtkOrderStatusResponse.getUpdatedDate());
             return response;
         }

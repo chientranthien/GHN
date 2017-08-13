@@ -1,6 +1,7 @@
 package com.dalafarm.vendor.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
@@ -48,7 +49,8 @@ public class OrderDetail {
     //Because Only 1 supplier in DB at this time(August 5 2017)
     private Integer supplierId = 1;
 
-    private String dummyId;
+    @NotEmpty
+    private String orderId;
 
     private String supplierOrderId;
 
@@ -191,12 +193,12 @@ public class OrderDetail {
         this.supplierOrderId = supplierOrderId;
     }
 
-    public String getDummyId() {
-        return dummyId;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setDummyId(String dummyId) {
-        this.dummyId = dummyId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public Integer getSupplierId() {
