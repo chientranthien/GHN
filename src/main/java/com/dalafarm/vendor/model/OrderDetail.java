@@ -46,13 +46,13 @@ public class OrderDetail {
     @JsonProperty("isFreeship")
     private boolean isFreeship;
 
-    //Because Only 1 supplier in DB at this time(August 5 2017)
-    private Integer supplierId = 1;
+    @NotNull
+    private Integer vendorId;
 
     @NotEmpty
     private String orderId;
 
-    private String supplierOrderId;
+    private String vendorOrderId;
 
     private Integer value;
 
@@ -63,6 +63,17 @@ public class OrderDetail {
     private String estimatedPickupTime;
 
     private String estimatedDeliverTime;
+
+    private Integer statusId = 5;
+
+
+    public Integer getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
+    }
 
     public String getFromPerson() {
         return fromPerson;
@@ -185,12 +196,12 @@ public class OrderDetail {
         this.estimatedDeliverTime = estimatedDeliverTime;
     }
 
-    public String getSupplierOrderId() {
-        return supplierOrderId;
+    public String getVendorOrderId() {
+        return vendorOrderId;
     }
 
-    public void setSupplierOrderId(String supplierOrderId) {
-        this.supplierOrderId = supplierOrderId;
+    public void setVendorOrderId(String vendorOrderId) {
+        this.vendorOrderId = vendorOrderId;
     }
 
     public String getOrderId() {
@@ -201,12 +212,12 @@ public class OrderDetail {
         this.orderId = orderId;
     }
 
-    public Integer getSupplierId() {
-        return supplierId;
+    public Integer getVendorId() {
+        return vendorId;
     }
 
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 
     public String getPickupDistrictId() {

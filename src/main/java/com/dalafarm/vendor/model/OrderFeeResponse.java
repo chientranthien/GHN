@@ -3,28 +3,20 @@ package com.dalafarm.vendor.model;
 /**
  * Created by chien on 8/4/17.
  */
-public class OrderFeeResponse {
-    private boolean success;
+public class OrderFeeResponse extends Response {
 
-    private String message;
 
     private int totalFee;
 
+    private int vendorId;
 
-    public boolean isSuccess() {
-        return success;
+
+    public int getVendorId() {
+        return vendorId;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+    public void setVendorId(int vendorId) {
+        this.vendorId = vendorId;
     }
 
     public int getTotalFee() {

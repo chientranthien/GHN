@@ -19,7 +19,7 @@ Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tie
     
     "weight": integer | OPTIONAL | IN GRAM,
     
-    "supplierId": integer | OPTIONAL
+    "vendorId": integer | OPTIONAL
     
     }
 * **Success Response:**
@@ -78,7 +78,7 @@ Create a booking for shipping based on new order with logistic vendor such as Gi
          
         "dropEmail":alphanumeric | OPTIONAL,
         "isFreeship": boolean | OPTIONAL,
-        "supplierId": integer | OPTIONAL,
+        "vendorId": integer | OPTIONAL,
         "value": integer | OPTIONAL,
         "note": alphanumeric | OPTIONAL
      }
@@ -90,7 +90,7 @@ Create a booking for shipping based on new order with logistic vendor such as Gi
     **Content:** `{
                       "success": true,
                       "totalFee": 18000,
-                      "supplierOrderId": "S78169.853420",
+                      "vendorOrderId": "S78169.853420",
                       "supplierOrderMessage": ""
                   }`
  
@@ -127,7 +127,7 @@ Create a booking for shipping based on new order with logistic vendor such as Gi
             
             "dropEmail":"example@gmail.com",
             "isFreeship":true,
-            "supplierId":1,
+            "vendorId":1,
             "value": 3000000,
             "note": "Khối lượng tính cước tối đa: 1.00 kg"
         }
@@ -139,7 +139,7 @@ Create a booking for shipping based on new order with logistic vendor such as Gi
 ----
 Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tiet Kiem. Then response the order status.
 * **URL**
- /v1/orders/:supplierOrderId/status
+ /v1/orders/:vendorOrderId/status
 
 * **Method:**
   `GET`
@@ -222,4 +222,30 @@ Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tie
     ``` 
     curl -X GET \
       'http://localhost:8080/v1/districts?provinceId=01'
+* **Notes:**
+
+**ACTIVATE ORDER**
+----
+* **URL**
+ /v1/order/{id}/activate
+
+* **Method:**
+  `GET`
+ 
+
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{
+                          "success": true,
+                          "message": "the Order was activated and forwarded to the vendor"
+                   }
+                     `
+ 
+
+* **Sample Call:**
+
+    ``` 
+    curl -X GET \
+      'http://localhost:8080/v1/order/1/activate'
 * **Notes:**

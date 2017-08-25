@@ -3,7 +3,7 @@ package com.dalafarm.vendor.model;
 /**
  * Created by chien on 8/5/17.
  */
-public class OrderStatusResponse {
+public class OrderStatusResponse extends Response{
 
     private String orderId;
 

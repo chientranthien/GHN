@@ -3,45 +3,16 @@ package com.dalafarm.vendor.model;
 /**
  * Created by chien on 8/4/17.
  */
-public class OrderResponse {
-    private boolean success;
-
-    private int totalFee;
-
-    private String supplierOrderId;
-
-    private String supplierOrderMessage;
+public class OrderResponse extends Response {
 
 
-    public boolean isSuccess() {
-        return success;
+    private Integer vendorId;
+
+    public Integer getVendorId() {
+        return vendorId;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public int getTotalFee() {
-        return totalFee;
-    }
-
-    public void setTotalFee(int totalFee) {
-        this.totalFee = totalFee;
-    }
-
-    public String getSupplierOrderId() {
-        return supplierOrderId;
-    }
-
-    public void setSupplierOrderId(String supplierOrderId) {
-        this.supplierOrderId = supplierOrderId;
-    }
-
-    public String getSupplierOrderMessage() {
-        return supplierOrderMessage;
-    }
-
-    public void setSupplierOrderMessage(String supplierOrderMessage) {
-        this.supplierOrderMessage = supplierOrderMessage;
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 }

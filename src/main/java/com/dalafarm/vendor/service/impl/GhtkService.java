@@ -27,7 +27,7 @@ import java.util.UUID;
 /**
  * Created by chien on 8/1/17.
  */
-@Service
+@Service(value = "ghtkService")
 public class GhtkService implements LogisticService {
 
     private final String PICKUP_PROVINCE = "pick_province";
@@ -94,20 +94,31 @@ public class GhtkService implements LogisticService {
     }
 
     @Override
-    public OrderResponse order(Order order) {
+    public OrderResponse createOrder(Order order) {
+        order = orderRepository.save(order);
 
-        HttpEntity<?> entity = buildEntityForPost(order);
+        return ResponseHelper.buildOrderResponse(order);
+    }
 
-        GhtkOrderResponse body = sendOrderRequestToGhtk(entity);
+    @Override
+    public Response activateOrder(Order order) {
 
-        storeOderIntoDatabase(order, body);
+        Response response = activateOrder(order, (o) -> {
+            generateAndSetDummyId(o);
+            HttpEntity<?> entity = buildEntityForPost(o);
+            GhtkOrderResponse ghtkOrder = sendOrderRequestToGhtk(entity);
 
-        return ResponseHelper.buildOrderResponse(body);
+            ResponseHelper.insertVendorOrderResponseIntoOrder(ghtkOrder,o);
+
+            orderRepository.save(o);
+        });
+
+        return response;
     }
 
     private void storeOderIntoDatabase(Order order, GhtkOrderResponse body) {
 
-        Order finalOrder = ResponseHelper.insertSupplierOrderResponseIntoOrder(body, order);
+        Order finalOrder = ResponseHelper.insertVendorOrderResponseIntoOrder(body, order);
         if (finalOrder != null)
             orderRepository.save(finalOrder);
     }

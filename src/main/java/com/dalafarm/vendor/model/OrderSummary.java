@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  */
 public class OrderSummary {
 
-    private Integer supplierId;
+    private Integer vendorId;
 
     @NotNull
     private String pickupDistrictId;
@@ -29,12 +29,12 @@ public class OrderSummary {
         this.weight = weight;
     }
 
-    public Integer getSupplierId() {
-        return supplierId;
+    public Integer getVendorId() {
+        return vendorId;
     }
 
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
+    public void setVendorId(Integer vendorId) {
+        this.vendorId = vendorId;
     }
 
     public String getPickupDistrictId() {
