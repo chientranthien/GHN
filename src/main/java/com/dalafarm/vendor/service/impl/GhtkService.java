@@ -28,7 +28,7 @@ import java.util.UUID;
  * Created by chien on 8/1/17.
  */
 @Service(value = "ghtkService")
-public class GhtkService implements LogisticService {
+public class GhtkService extends AbstractLogisticService {
 
     private final String PICKUP_PROVINCE = "pick_province";
     private final String PICKUP_DISTRICT = "pick_district";
@@ -42,7 +42,6 @@ public class GhtkService implements LogisticService {
 
     @Value("${ghtk.api_token}")
     private String apiToken;
-
 
     @Autowired
     OrderRepository orderRepository;
@@ -92,13 +91,6 @@ public class GhtkService implements LogisticService {
                 .queryParam(DROP_PROVINCE, dropDistrict.getProvince().getName())
                 .queryParam(DROP_DISTRICT, dropDistrict.getName())
                 .queryParam(WEIGHT, orderSummary.getWeight()).build().encode().toUri();
-    }
-
-    @Override
-    public OrderResponse createOrder(Order order) {
-        order = orderRepository.save(order);
-
-        return ResponseHelper.buildOrderResponse(order);
     }
 
     @Override

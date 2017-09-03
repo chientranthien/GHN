@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 
 @Service(value="tinLogisticService")
 @Qualifier("tinLogistic")
-public class TinLogisticService implements LogisticService {
+public class TinLogisticService extends AbstractLogisticService {
     private final static int VENDOR_ID = 2;
     @Autowired
     DistrictRepository districtRepository;
@@ -41,13 +41,6 @@ public class TinLogisticService implements LogisticService {
         orderFeeResponse.setTotalFee(dropProvince.getGroup().calculateServiceFee(orderSummary.getWeight()));
         orderFeeResponse.setVendorId(VENDOR_ID);
         return orderFeeResponse;
-    }
-
-    @Override
-    public OrderResponse createOrder(Order order) {
-        order = orderRepository.save(order);
-
-        return ResponseHelper.buildOrderResponse(order);
     }
 
     @Override

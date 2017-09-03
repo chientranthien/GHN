@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -50,6 +51,7 @@ public class OrderDetail {
     private Integer vendorId;
 
     @NotEmpty
+    @Column(unique = true)
     private String orderId;
 
     private String vendorOrderId;
