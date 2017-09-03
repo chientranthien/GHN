@@ -104,7 +104,7 @@ public class GhtkService implements LogisticService {
     public Response activateOrder(Order order) {
 
         Response response = activateOrder(order, (o) -> {
-            generateAndSetDummyId(o);
+//            generateAndSetDummyId(o);
             HttpEntity<?> entity = buildEntityForPost(o);
             GhtkOrderResponse ghtkOrder = sendOrderRequestToGhtk(entity);
 

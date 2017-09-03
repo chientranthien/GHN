@@ -17,6 +17,16 @@ public class Status {
 
     private Integer ghtkStatusId;
 
+    private String ghtkStatusName;
+
+    public String getGhtkStatusName() {
+        return ghtkStatusName;
+    }
+
+    public void setGhtkStatusName(String ghtkStatusName) {
+        this.ghtkStatusName = ghtkStatusName;
+    }
+
     public Integer getId() {
         return id;
     }
