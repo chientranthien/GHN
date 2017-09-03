@@ -12,9 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by LeeU on 9/3/2017.
@@ -42,7 +40,7 @@ public class OrderModelToOrderMapperTest {
         assertTrue(order.getOrderDetail().isFreeship());
         assertEquals(order.getOrderDetail().getDropTel(), "+84905551287");
         assertEquals(order.getOrderDetail().getFromPerson(), "DalaFarm");
-        assertEquals(order.getOrderDetail().getPickupAddress(), "317 Lô D, chung cư lạc long quân, đường Tống Văn Trân");
+        assertEquals(order.getOrderDetail().getPickupAddress(), "317 Lô D, chung cư Lạc Long Quân, đường Tống Văn Trân");
         assertEquals(order.getOrderDetail().getPickupDistrictId(), "772");
         assertEquals(order.getOrderDetail().getPickupTel(), "0941336174 - 0906951498");
         assertEquals(order.getOrderProducts().size(), 3);
