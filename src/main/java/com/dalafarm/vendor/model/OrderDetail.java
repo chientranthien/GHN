@@ -56,7 +56,7 @@ public class OrderDetail {
 
     private Integer value;
 
-    private Integer fee;
+    private Integer shippingFee;
 
     private Integer insuranceFee;
 
@@ -66,6 +66,15 @@ public class OrderDetail {
 
     private Integer statusId = 5;
 
+    private Float weightInGram;
+
+    public Float getWeightInGram() {
+        return weightInGram;
+    }
+
+    public void setWeightInGram(Float weightInGram) {
+        this.weightInGram = weightInGram;
+    }
 
     public Integer getStatusId() {
         return statusId;
@@ -164,12 +173,12 @@ public class OrderDetail {
         this.value = value;
     }
 
-    public Integer getFee() {
-        return fee;
+    public Integer getShippingFee() {
+        return shippingFee;
     }
 
-    public void setFee(Integer fee) {
-        this.fee = fee;
+    public void setShippingFee(Integer shippingFee) {
+        this.shippingFee = shippingFee;
     }
 
     public Integer getInsuranceFee() {

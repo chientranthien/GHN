@@ -62,7 +62,6 @@ public class OrderModelToOrderMapper {
         orderDetail.setNote(orderModel.getInfo().getAdditionalNote());
         orderDetail.setValue(orderModel.getSubtotal());
         orderDetail.setVendorId(orderModel.getShippingVendor());
-
         return orderDetail;
     }
 

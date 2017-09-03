@@ -1,14 +1,10 @@
 package com.dalafarm.vendor.util;
 
 import com.dalafarm.vendor.controller.ResourceNotFoundException;
-import com.dalafarm.vendor.controller.VendorController;
 import com.dalafarm.vendor.model.*;
 import com.dalafarm.vendor.model.ghtk.GhtkOrderFeeResponse;
 import com.dalafarm.vendor.model.ghtk.GhtkOrderResponse;
 import com.dalafarm.vendor.model.ghtk.GhtkOrderStatusResponse;
-import com.dalafarm.vendor.service.LogisticService;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
 
 /**
  * Created by chien on 8/4/17.
@@ -51,7 +47,7 @@ public class ResponseHelper {
         if (!ghtkOrderResponse.isSuccess())
             return null;
         OrderDetail orderDetail = order.getOrderDetail();
-        orderDetail.setFee(Integer.valueOf(ghtkOrderResponse.getFee()));
+        orderDetail.setShippingFee(Integer.valueOf(ghtkOrderResponse.getFee()));
         orderDetail.setEstimatedDeliverTime(ghtkOrderResponse.getEstimatedDeliverTime());
         orderDetail.setEstimatedPickupTime(ghtkOrderResponse.getEstimatedPickUtime());
         orderDetail.setInsuranceFee(Integer.valueOf(ghtkOrderResponse.getInsuranceFee()));
