@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by chien on 8/14/17.
  */
 @RestController
-@RequestMapping("v1/order-statuses")
+@RequestMapping("v1/order-status")
 public class StatusController {
     @Autowired
     StatusRepository statusRepository;
