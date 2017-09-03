@@ -32,4 +32,7 @@ public class LogisticServiceFactory {
         }
     }
 
+    public LogisticService getDefaultLogisticService(){
+        return getLogisticService(VendorId.GHTK);
+    }
 }
