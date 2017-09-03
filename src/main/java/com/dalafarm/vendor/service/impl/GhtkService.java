@@ -61,7 +61,7 @@ public class GhtkService implements LogisticService {
 
     @Autowired
     @Qualifier("tinLogistic")
-    LogisticService logisticService;
+    LogisticService tinLogisticService;
 
     @Override
     public OrderFeeResponse calculateServiceFee(OrderSummary orderSummary) {
@@ -77,8 +77,9 @@ public class GhtkService implements LogisticService {
 
         if (response.isDeliverable()) {
             return ResponseHelper.buildOrderFeeResponse(response);
-        } else
-            return logisticService.calculateServiceFee(orderSummary);
+        } else {
+            return tinLogisticService.calculateServiceFee(orderSummary);
+        }
     }
 
     private URI buildlUri(OrderSummary orderSummary) {
