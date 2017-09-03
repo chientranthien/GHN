@@ -13,7 +13,7 @@ public class GhtkOrderFeeResponse {
     @JsonProperty("message")
     private String message;
 
-    @JsonProperty("fee")
+    @JsonProperty("shippingFee")
     private OrderFeeDetail orderFeeDetail;
 
     public boolean isSuccess() {
@@ -50,12 +50,12 @@ public class GhtkOrderFeeResponse {
     }
 
     @JsonIgnore
-    public Integer getFee() {
-        return getOrderFeeDetail().getFee();
+    public Integer getShippingFee() {
+        return getOrderFeeDetail().getShippingFee();
     }
 
-    public void setFee(Integer fee) {
-        getOrderFeeDetail().setFee(fee);
+    public void setShippingFee(Integer shippingFee) {
+        getOrderFeeDetail().setShippingFee(shippingFee);
     }
 
     @JsonIgnore
@@ -89,8 +89,8 @@ public class GhtkOrderFeeResponse {
         @JsonProperty("name")
         String serviceName;
 
-        @JsonProperty("fee")
-        Integer fee;
+        @JsonProperty("shippingFee")
+        Integer shippingFee;
 
         @JsonProperty("insurance_fee")
         Integer insuranceFee;
@@ -110,12 +110,12 @@ public class GhtkOrderFeeResponse {
             this.serviceName = serviceName;
         }
 
-        public Integer getFee() {
-            return fee;
+        public Integer getShippingFee() {
+            return shippingFee;
         }
 
-        public void setFee(Integer fee) {
-            this.fee = fee;
+        public void setShippingFee(Integer shippingFee) {
+            this.shippingFee = shippingFee;
         }
 
         public Integer getInsuranceFee() {

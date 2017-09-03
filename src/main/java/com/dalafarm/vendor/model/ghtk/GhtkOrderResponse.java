@@ -49,12 +49,12 @@ public class GhtkOrderResponse {
     }
 
     @JsonIgnore
-    public String getFee() {
-        return order.getFee();
+    public String getShippingFee() {
+        return order.getShippingFee();
     }
 
-    public void setFee(String fee) {
-        order.setFee(fee);
+    public void setShippingFee(String shippingFee) {
+        order.setShippingFee(shippingFee);
     }
 
     @JsonIgnore
@@ -92,7 +92,7 @@ public class GhtkOrderResponse {
         private String area;
 
         @JsonProperty("fee")
-        private String fee;
+        private String shippingFee;
 
 
         @JsonProperty("insurance_fee")
@@ -122,12 +122,12 @@ public class GhtkOrderResponse {
             this.area = area;
         }
 
-        public String getFee() {
-            return fee;
+        public String getShippingFee() {
+            return shippingFee;
         }
 
-        public void setFee(String fee) {
-            this.fee = fee;
+        public void setShippingFee(String shippingFee) {
+            this.shippingFee = shippingFee;
         }
 
         public String getInsuranceFee() {

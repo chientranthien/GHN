@@ -36,7 +36,7 @@ public class ResponseHelper {
         OrderFeeResponse orderFeeResponse = new OrderFeeResponse();
         orderFeeResponse.setSuccess(ghtkOrderFeeResponse.isSuccess());
         orderFeeResponse.setMessage(SUCCESSFUL_MESSAGE);
-        orderFeeResponse.setTotalFee(ghtkOrderFeeResponse.getFee());
+        orderFeeResponse.setTotalFee(ghtkOrderFeeResponse.getShippingFee());
         orderFeeResponse.setVendorId(VENDOR_ID);
         return orderFeeResponse;
     }
@@ -47,7 +47,7 @@ public class ResponseHelper {
         if (!ghtkOrderResponse.isSuccess())
             return null;
         OrderDetail orderDetail = order.getOrderDetail();
-        orderDetail.setShippingFee(Integer.valueOf(ghtkOrderResponse.getFee()));
+        orderDetail.setShippingFee(Integer.valueOf(ghtkOrderResponse.getShippingFee()));
         orderDetail.setEstimatedDeliverTime(ghtkOrderResponse.getEstimatedDeliverTime());
         orderDetail.setEstimatedPickupTime(ghtkOrderResponse.getEstimatedPickUtime());
         orderDetail.setInsuranceFee(Integer.valueOf(ghtkOrderResponse.getInsuranceFee()));
