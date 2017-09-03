@@ -44,7 +44,7 @@
                     <td th:text="${order.orderDetail.dropAddress}"></td>
                     <td th:text="${order.orderDetail.dropDistrictId}"></td>
                     <!--<td th:text="${order.orderDetail.dropProvince}"></td>-->
-                    <td th:text="${order.orderDetail.grandTotal}"></td>
+                    <td th:text="${#numbers.formatDecimal(order.orderDetail.grandTotal, 0, 'COMMA', 0, 'POINT')}"></td>
                     <td th:text="${order.orderDetail.dropEmail}"></td>
                     <td th:text="${order.orderDetail.statusId}"></td>
                     <td>
