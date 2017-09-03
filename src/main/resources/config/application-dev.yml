@@ -2,9 +2,3 @@ ghtk:
   api_token: 947Dde88E641E9989C353cCD02E6FDa1A547b53a
   url_service: https://dev.giaohangtietkiem.vn/
 
-spring:
-  jpa.hibernate.ddl-auto: update
-  datasource:
-    url: jdbc:mysql://localhost:3306/dlf?useUnicode=yes&characterEncoding=UTF-8
-    username: root
-    password: manager

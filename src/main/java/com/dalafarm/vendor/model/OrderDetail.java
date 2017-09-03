@@ -44,7 +44,7 @@ public class OrderDetail {
 
     @Column(name = "IS_FREESHIP")
     @JsonProperty("isFreeship")
-    private boolean isFreeship;
+    private boolean isFreeship = true;
 
     @NotNull
     private Integer vendorId;

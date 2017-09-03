@@ -15,8 +15,8 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder;
  */
 public class ResponseHelper {
     public static OrderResponse buildOrderResponse(Order order) {
-        final String SUCCESSFUL_MESSAGE = "The createOrder was created successfully";
-        final String FAILED_MESSAGE = "Failure to create createOrder";
+        final String SUCCESSFUL_MESSAGE = "The order was created successfully";
+        final String FAILED_MESSAGE = "Failure to create order";
 
         OrderResponse response = new OrderResponse();
 

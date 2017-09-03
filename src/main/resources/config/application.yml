@@ -1,3 +1,12 @@
 spring:
-  profiles:
-    active: cloud
+  jpa.hibernate.ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/dlf?useUnicode=yes&characterEncoding=UTF-8
+    username: root
+    password: manager
+
+dalafarm:
+  name: DalaFarm
+  districtId: 772
+  address: 317 Lô D, chung cư lạc long quân, đường Tống Văn Trân
+  tel: 0941336174 - 0906951498

@@ -1,6 +1,5 @@
 package com.dalafarm.vendor.model.ghtk;
 
-import com.dalafarm.vendor.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -40,12 +39,12 @@ public class GhtkOrderStatusResponse {
     }
 
     @JsonIgnore
-    public String getDummyOrderId() {
-        return order.getDummyOrderId();
+    public String getOrderId() {
+        return order.getOrderId();
     }
 
-    public void setDummyOrderId(String dummyOrderId) {
-        order.setDummyOrderId(dummyOrderId);
+    public void setOrderId(String orderId) {
+        order.setOrderId(orderId);
     }
 
     @JsonIgnore
@@ -116,7 +115,7 @@ public class GhtkOrderStatusResponse {
         private String supplierOrderId;
 
         @JsonProperty("partner_id")
-        private String dummyOrderId;
+        private String orderId;
 
         @JsonProperty("status")
         private Integer status;
@@ -147,12 +146,12 @@ public class GhtkOrderStatusResponse {
             this.supplierOrderId = supplierOrderId;
         }
 
-        public String getDummyOrderId() {
-            return dummyOrderId;
+        public String getOrderId() {
+            return orderId;
         }
 
-        public void setDummyOrderId(String dummyOrderId) {
-            this.dummyOrderId = dummyOrderId;
+        public void setOrderId(String orderId) {
+            this.orderId = orderId;
         }
 
         public Integer getStatus() {

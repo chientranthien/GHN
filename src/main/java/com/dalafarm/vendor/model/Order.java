@@ -34,7 +34,6 @@ public class Order {
     @Embedded
     private OrderDetail orderDetail;
 
-
     public List<Product> getProducts() {
         return products;
     }

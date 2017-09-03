@@ -105,7 +105,6 @@ public class GhtkService implements LogisticService {
     public Response activateOrder(Order order) {
 
         Response response = activateOrder(order, (o) -> {
-//            generateAndSetDummyId(o);
             HttpEntity<?> entity = buildEntityForPost(o);
             GhtkOrderResponse ghtkOrder = sendOrderRequestToGhtk(entity);
 
@@ -117,23 +116,10 @@ public class GhtkService implements LogisticService {
         return response;
     }
 
-    private void storeOderIntoDatabase(Order order, GhtkOrderResponse body) {
-
-        Order finalOrder = ResponseHelper.insertVendorOrderResponseIntoOrder(body, order);
-        if (finalOrder != null)
-            orderRepository.save(finalOrder);
-    }
-
     private GhtkOrderResponse sendOrderRequestToGhtk(HttpEntity<?> entity) {
         String url = urlService + "services/shipment/order";
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.exchange(url, HttpMethod.POST, entity, GhtkOrderResponse.class).getBody();
-    }
-
-    private void generateAndSetDummyId(Order order) {
-        String uuid = UUID.randomUUID().toString();
-        OrderDetail orderDetail = order.getOrderDetail();
-        orderDetail.setOrderId(uuid);
     }
 
     private HttpEntity<?> buildEntityForPost(Order order) {

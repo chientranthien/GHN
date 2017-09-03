@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface ProductRepository extends CrudRepository<Product,Long> {
     List<Product> findAllByIdInOrderByIdAsc(Iterable<Long> productIds);
+
+    Product findBySku(String sku);
 }

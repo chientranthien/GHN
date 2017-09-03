@@ -4,8 +4,10 @@ import com.dalafarm.vendor.model.Order;
 import com.dalafarm.vendor.model.OrderResponse;
 import com.dalafarm.vendor.model.OrderStatusResponse;
 import com.dalafarm.vendor.model.Response;
+import com.dalafarm.vendor.model.frontend.OrderModel;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
+import com.dalafarm.vendor.service.OrderModelToOrderMapper;
 import com.dalafarm.vendor.util.LogisticServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,9 @@ public class OrderController {
 
     @Autowired
     LogisticServiceFactory logisticServiceFactory;
+
+    @Autowired
+    OrderModelToOrderMapper orderModelToOrderMapper;
 
     @RequestMapping("order/{orderId}")
     public Object getOrder(@PathVariable("orderId") String orderId) {
@@ -50,7 +55,8 @@ public class OrderController {
     }
 
     @RequestMapping(value = "order", method = RequestMethod.POST)
-    public OrderResponse order(@RequestBody @Valid Order order) {
+    public OrderResponse order(@RequestBody @Valid OrderModel orderModel) {
+        Order order = orderModelToOrderMapper.toOrder(orderModel);
         LogisticService logisticService = getLogisticServiceBasedOnOrder(order);
         return logisticService.createOrder(order);
     }
