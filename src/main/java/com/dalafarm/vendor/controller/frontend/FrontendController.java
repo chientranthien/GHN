@@ -1,6 +1,5 @@
 package com.dalafarm.vendor.controller.frontend;
 
-import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +38,6 @@ public class FrontendController {
 
     @GetMapping("/403")
     public String error403() {
-        return "/error/403";
+        return "/403";
     }
 }
