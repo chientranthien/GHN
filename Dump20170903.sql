@@ -108,7 +108,7 @@ CREATE TABLE `orders` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`),
   KEY `FK_STATUS_idx` (`STATUS_ID`,`VENDOR_ID`),
-  KEY `FK_SUPPLIER_idx` (`VENDOR_ID`),
+  KEY `FK_VENDOR_idx` (`VENDOR_ID`),
   CONSTRAINT `FK_VENDOR` FOREIGN KEY (`VENDOR_ID`) REFERENCES `vendor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -199,30 +199,6 @@ LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
 INSERT INTO `status` VALUES (1,'Hủy đơn hàng',-1,'Hủy đơn hàng'),(5,'Đã đóng gói xong, đang chờ công ty vận chuyển đến lấy',1,'Chưa tiếp nhận'),(6,'Đã xuất kho DalaFarm và được tiếp nhận bởi công ty vận chuyển',2,'Đã tiếp nhận'),(7,'Đã lấy hàng/Đã nhập kho của công ty vận chuyển',3,'Đã lấy hàng/Đã nhập kho'),(8,'Đã điều phối giao hàng/Đang giao hàng',4,'Đã điều phối giao hàng/Đang giao hàng'),(9,'Đã giao hàng/Chưa đối soát',5,'Đã giao hàng/Chưa đối soát'),(10,'Đã đối soát',6,'Đã đối soát'),(11,'Không lấy được hàng',7,'Không lấy được hàng'),(12,'Hoãn lấy hàng',8,'Hoãn lấy hàng'),(13,'Không giao được hàng',9,'Không giao được hàng'),(14,'Có chậm trễ trong việc giao hàng',10,'Delay giao hàng'),(15,'Đã giao hàng thành công',11,'Đã đối soát công nợ trả hàng'),(16,'Đã điều phối lấy hàng/Đang lấy hàng',12,'Đã điều phối lấy hàng/Đang lấy hàng'),(17,'Đang trả hàng (COD cầm hàng đi trả)',20,'Đang trả hàng (COD cầm hàng đi trả)'),(18,'Đã trả hàng (COD đã trả xong hàng)',21,'Đã trả hàng (COD đã trả xong hàng)'),(19,'Shipper báo đã lấy hàng',123,'Shipper báo đã lấy hàng'),(20,'Shipper (nhân viên lấy/giao hàng) báo không lấy được hàng',127,'Shipper (nhân viên lấy/giao hàng) báo không lấy được hàng'),(21,'Shipper báo có chậm trễ trong việc lấy hàng',128,'Shipper báo delay lấy hàng'),(22,'Shipper báo đã giao hàng',45,'Shipper báo đã giao hàng'),(23,'Shipper báo không giao được giao hàng',49,'Shipper báo không giao được giao hàng'),(24,'Shipper báo có chậm trễ trong việc giao hàng',410,'Shipper báo delay giao hàng');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `supplier`
---
-
-DROP TABLE IF EXISTS `supplier`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `supplier` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `supplier`
---
-
-LOCK TABLES `supplier` WRITE;
-/*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
-INSERT INTO `supplier` VALUES (1,'Giao Hàng Tiết Kiệm');
-/*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
