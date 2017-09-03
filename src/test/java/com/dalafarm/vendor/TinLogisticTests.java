@@ -1,9 +1,7 @@
 package com.dalafarm.vendor;
 
-import com.dalafarm.vendor.model.Order;
 import com.dalafarm.vendor.model.OrderFeeResponse;
 import com.dalafarm.vendor.model.OrderSummary;
-import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
 import org.junit.Assert;
 import org.junit.Test;
