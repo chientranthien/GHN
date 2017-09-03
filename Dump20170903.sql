@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for osx10.9 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: GHN
+-- Host: localhost    Database: dlf
 -- ------------------------------------------------------
--- Server version	5.7.19
+-- Server version	5.7.19-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,82 +14,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `PRODUCT`
---
-
-DROP TABLE IF EXISTS `PRODUCT`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `PRODUCT` (
-  `ID` bigint(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
-  `WEIGHT` float DEFAULT NULL,
-  `PRICE` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `PRODUCT`
---
-
-LOCK TABLES `PRODUCT` WRITE;
-/*!40000 ALTER TABLE `PRODUCT` DISABLE KEYS */;
-INSERT INTO `PRODUCT` VALUES (1,'Kem đánh răng',300,100000),(2,'Bản chải',200,10000),(3,'Trà xanh',100,20000),(4,'Bút chì',100,3000);
-/*!40000 ALTER TABLE `PRODUCT` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `STATUS`
---
-
-DROP TABLE IF EXISTS `STATUS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `STATUS` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `GHTK_STATUS_ID` int(11) DEFAULT NULL,
-  `GHTK_STATUS_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `STATUS`
---
-
-LOCK TABLES `STATUS` WRITE;
-/*!40000 ALTER TABLE `STATUS` DISABLE KEYS */;
-INSERT INTO `STATUS` VALUES (1,'Hủy đơn hàng',-1,'Hủy đơn hàng'),(5,'Chưa tiếp nhận',1,'Chưa tiếp nhận'),(6,'Đã tiếp nhận',2,'Đã tiếp nhận'),(7,'Đã lấy hàng/Đã nhập kho',3,'Đã lấy hàng/Đã nhập kho'),(8,'Đã điều phối giao hàng/Đang giao hàng',4,'Đã điều phối giao hàng/Đang giao hàng'),(9,'Đã giao hàng/Chưa đối soát',5,'Đã giao hàng/Chưa đối soát'),(10,'Đã đối soát',6,'Đã đối soát'),(11,'Không lấy được hàng',7,'Không lấy được hàng'),(12,'Hoãn lấy hàng',8,'Hoãn lấy hàng'),(13,'Không giao được hàng',9,'Không giao được hàng'),(14,'Delay giao hàng',10,'Delay giao hàng'),(15,'Đã đối soát công nợ trả hàng',11,'Đã đối soát công nợ trả hàng'),(16,'Đã điều phối lấy hàng/Đang lấy hàng',12,'Đã điều phối lấy hàng/Đang lấy hàng'),(17,'Đang trả hàng (COD cầm hàng đi trả)',20,'Đang trả hàng (COD cầm hàng đi trả)'),(18,'Đã trả hàng (COD đã trả xong hàng)',21,'Đã trả hàng (COD đã trả xong hàng)'),(19,'Shipper báo đã lấy hàng',123,'Shipper báo đã lấy hàng'),(20,'Shipper (nhân viên lấy/giao hàng) báo không lấy được hàng',127,'Shipper (nhân viên lấy/giao hàng) báo không lấy được hàng'),(21,'Shipper báo delay lấy hàng',128,'Shipper báo delay lấy hàng'),(22,'Shipper báo đã giao hàng',45,'Shipper báo đã giao hàng'),(23,'Shipper báo không giao được giao hàng',49,'Shipper báo không giao được giao hàng'),(24,'Shipper báo delay giao hàng',410,'Shipper báo delay giao hàng');
-/*!40000 ALTER TABLE `STATUS` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `VENDOR`
---
-
-DROP TABLE IF EXISTS `VENDOR`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `VENDOR` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `VENDOR`
---
-
-LOCK TABLES `VENDOR` WRITE;
-/*!40000 ALTER TABLE `VENDOR` DISABLE KEYS */;
-INSERT INTO `VENDOR` VALUES (1,'Giao Hàng Tiết Kiệm'),(2,'Tin Logistic');
-/*!40000 ALTER TABLE `VENDOR` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `district`
@@ -136,9 +60,9 @@ CREATE TABLE `order_product` (
   KEY `FK_PRODUCT_idx` (`PRODUCT_ID`),
   KEY `FK_ORDER_idx` (`ORDER_ID`),
   CONSTRAINT `FK_ORDER` FOREIGN KEY (`ORDER_ID`) REFERENCES `orders` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_PRODUCT` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `PRODUCT` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_PRODUCT` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `product` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKl5mnj9n0di7k1v90yxnthkc73` FOREIGN KEY (`ORDER_ID`) REFERENCES `orders` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +71,7 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (31,38,1,1),(32,38,2,3),(33,39,1,1),(34,39,2,3),(35,40,1,1),(36,40,2,3),(37,41,1,1),(38,41,2,3),(39,42,1,1),(40,42,2,3),(41,43,1,1),(42,43,2,3),(43,44,1,1),(44,44,2,3),(45,45,1,1),(46,45,2,3),(47,48,1,1),(48,48,2,3);
+INSERT INTO `order_product` VALUES (34,54,22,1),(35,54,26,1),(36,54,27,1),(37,55,22,1),(38,55,26,1),(39,55,27,1),(40,56,22,1),(41,56,26,1),(42,56,27,1),(43,57,16,1),(44,57,17,2),(45,57,22,1),(46,57,26,1),(47,57,27,1);
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,18 +85,16 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `ID` bigint(11) NOT NULL AUTO_INCREMENT,
   `FROM_PERSON` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `COD` int(11) DEFAULT NULL,
   `PICKUP_ADDRESS` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `PICKUP_TEL` varchar(20) DEFAULT NULL,
+  `PICKUP_TEL` varchar(50) DEFAULT NULL,
   `TO_PERSON` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `DROP_ADDRESS` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `DROP_TEL` varchar(20) DEFAULT NULL,
+  `DROP_TEL` varchar(50) DEFAULT NULL,
   `DROP_EMAIL` varchar(100) DEFAULT NULL,
   `NOTE` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
   `VALUE` int(11) DEFAULT NULL,
   `VENDOR_ID` int(11) DEFAULT '1',
   `VENDOR_ORDER_ID` varchar(100) DEFAULT NULL,
-  `FEE` int(11) DEFAULT NULL,
   `INSURANCE_FEE` int(11) DEFAULT NULL,
   `ESTIMATED_PICKUP_TIME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `ESTIMATED_DELIVER_TIME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
@@ -181,12 +103,15 @@ CREATE TABLE `orders` (
   `DROP_DISTRICT_ID` varchar(5) NOT NULL,
   `IS_FREESHIP` bit(1) DEFAULT b'0',
   `order_id` varchar(255) DEFAULT NULL,
+  `shipping_fee` int(11) DEFAULT NULL,
+  `weight_in_gram` float DEFAULT NULL,
+  `grand_total` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`),
   KEY `FK_STATUS_idx` (`STATUS_ID`,`VENDOR_ID`),
   KEY `FK_SUPPLIER_idx` (`VENDOR_ID`),
-  CONSTRAINT `FK_VENDOR` FOREIGN KEY (`VENDOR_ID`) REFERENCES `vendor` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_VENDOR` FOREIGN KEY (`VENDOR_ID`) REFERENCES `vendor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,8 +120,35 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (38,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,'S78169.853421','431db10f-2628-481e-bd4a-1d0432fe51c1',18000,0,'Sáng 2017-08-06','Chiều 2017-08-06',5,'006','007','',NULL),(39,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,'S78169.853422','7fa8608b-d8eb-4705-a468-32a40f6cdec8',18000,0,'Sáng 2017-08-06','Chiều 2017-08-06',5,'006','007','',NULL),(40,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'006','007','',NULL),(41,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'006','007','',NULL),(42,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'006','007','',NULL),(43,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,NULL,NULL,NULL,NULL,NULL,NULL,6,'006','007','',NULL),(44,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,NULL,NULL,18000,NULL,'Sáng 2017-08-26','Chiều 2017-08-26',6,'006','007','','a1eb845d-2cbf-4664-a610-aa063665ed04'),(45,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,1,'S78169.853708',NULL,18000,0,'Sáng 2017-08-26','Chiều 2017-08-26',6,'006','007','','27ee1629-ebbe-40a6-b6b5-3b3cdf86e20b'),(48,'Trần Thiện Chiến',47000,'590 CMT8 P.11','0911222333','Chiến Trần THiện','123 nguyễn chí thanh','0911222333','example@gmail.com','Khối lượng tính cước tối đa: 1.00 kg',3000000,2,NULL,NULL,NULL,NULL,NULL,NULL,6,'006','007','',NULL);
+INSERT INTO `orders` VALUES (54,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,NULL,NULL,NULL,NULL,6,'772','971','','4CYOAF',NULL,NULL,800000),(55,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,'S78169.853818',0,'Sáng 2017-09-04','Sáng 2017-09-05',6,'772','971','','4CYOAH',50000,NULL,800000),(56,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,'S78169.853819',0,'Sáng 2017-09-04','Sáng 2017-09-05',6,'772','971','','4CYOAJ',50000,NULL,800000),(57,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,'S78169.853820',0,'Sáng 2017-09-04','Sáng 2017-09-05',6,'772','971','','4CYOAK',55000,NULL,800000);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `product`
+--
+
+DROP TABLE IF EXISTS `product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `product` (
+  `ID` bigint(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `WEIGHT` float DEFAULT NULL,
+  `PRICE` int(11) DEFAULT NULL,
+  `sku` char(25) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `product`
+--
+
+LOCK TABLES `product` WRITE;
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (5,'Bột Cà Rốt 50g',50,119000,'carrot'),(6,'Bột Củ Dền 50g',50,100000,'beetroot'),(7,'Bột Súp Lơ Xanh 50g',50,119000,'broccoli'),(8,'Bột Ca Cao 100g',100,40000,'cocoa100'),(9,'Bột Diếp Cá 50g',100,165000,'heartleaf100'),(10,'Bột Diếp Cá 100g',50,85000,'heartleaf'),(11,'Bột Trà Xanh 100g',100,175000,'matcha100'),(12,'Bột Trà Xanh 50g',50,95000,'matcha'),(13,'Bột Chùm Ngây 50g',50,65000,'moringa'),(14,'Bột Rau Má 50g',50,65000,'pennywort'),(15,'Bột Rau Má 100g',100,120000,'pennywort100'),(16,'Bột Bí Đỏ 50g',50,87500,'pumpkin'),(17,'Bột Cà Chua 50g',50,119000,'tomato'),(18,'Bột Hạt Sen 50g',50,119000,'lotus'),(19,'Bột Khoai Lang Tím 50g',50,85000,'purpleswpotato'),(20,'Bột Rau Bó Xôi 50g',50,110000,'spinach'),(21,'Bột Nấm Bào Ngư 50g',50,135000,'mushroom'),(22,'Dầu Tỏi Tía Đà Lạt 250ml',720,150000,'garlicoil'),(23,'Bột Rau Củ DalaBaby',70,199000,'dalababy'),(24,'Rượu Tỏi Đen',NULL,400000,'garlicwine'),(25,'Mật Ong Tỏi Đen',NULL,130000,'garlichoney'),(26,'Bột Detox Đỏ Sun Powder',100,375000,'sundetox'),(27,'Bột Detox Xanh Moon Powder',100,375000,'moondetox'),(28,'Bột Detox Vàng Star Powder',100,375000,'stardetox');
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -223,6 +175,80 @@ LOCK TABLES `province` WRITE;
 /*!40000 ALTER TABLE `province` DISABLE KEYS */;
 INSERT INTO `province` VALUES ('01','Hà Nội','Thành Phố','D'),('02','Hà Giang','Tỉnh','OTHERS'),('04','Cao Bằng','Tỉnh','OTHERS'),('06','Bắc Kạn','Tỉnh','OTHERS'),('08','Tuyên Quang','Tỉnh','OTHERS'),('10','Lào Cai','Tỉnh','OTHERS'),('11','Điện Biên','Tỉnh','OTHERS'),('12','Lai Châu','Tỉnh','OTHERS'),('14','Sơn La','Tỉnh','OTHERS'),('15','Yên Bái','Tỉnh','OTHERS'),('17','Hòa Bình','Tỉnh','OTHERS'),('19','Thái Nguyên','Tỉnh','OTHERS'),('20','Lạng Sơn','Tỉnh','OTHERS'),('22','Quảng Ninh','Tỉnh','OTHERS'),('24','Bắc Giang','Tỉnh','OTHERS'),('25','Phú Thọ','Tỉnh','D'),('26','Vĩnh Phúc','Tỉnh','D'),('27','Bắc Ninh','Tỉnh','D'),('30','Hải Dương','Tỉnh','OTHERS'),('31','Hải Phòng','Thành Phố','D'),('33','Hưng Yên','Tỉnh','OTHERS'),('34','Thái Bình','Tỉnh','OTHERS'),('35','Hà Nam','Tỉnh','OTHERS'),('36','Nam Định','Tỉnh','OTHERS'),('37','Ninh Bình','Tỉnh','OTHERS'),('38','Thanh Hóa','Tỉnh','E'),('40','Nghệ An','Tỉnh','E'),('42','Hà Tĩnh','Tỉnh','E'),('44','Quảng Bình','Tỉnh','E'),('45','Quảng Trị','Tỉnh','E'),('46','Thừa Thiên Huế','Tỉnh','E'),('48','Đà Nẵng','Thành Phố','E'),('49','Quảng Nam','Tỉnh','E'),('51','Quảng Ngãi','Tỉnh','E'),('52','Bình Định','Tỉnh','E'),('54','Phú Yên','Tỉnh','E'),('56','Khánh Hòa','Tỉnh','E'),('58','Ninh Thuận','Tỉnh','E'),('60','Bình Thuận','Tỉnh','E'),('62','Kon Tum','Tỉnh','B'),('64','Gia Lai','Tỉnh','B'),('66','Đắk Lắk','Tỉnh','B'),('67','Đắk Nông','Tỉnh','B'),('68','Lâm Đồng','Tỉnh','B'),('70','Bình Phước','Tỉnh','B'),('72','Tây Ninh','Tỉnh','A'),('74','Bình Dương','Tỉnh','A'),('75','Đồng Nai','Tỉnh','A'),('77','Bà Rịa - Vũng Tàu','Tỉnh','A'),('79','Hồ Chí Minh','Thành Phố','HCM'),('80','Long An','Tỉnh','C'),('82','Tiền Giang','Tỉnh','C'),('83','Bến Tre','Tỉnh','C'),('84','Trà Vinh','Tỉnh','C'),('86','Vĩnh Long','Tỉnh','C'),('87','Đồng Tháp','Tỉnh','C'),('89','An Giang','Tỉnh','C'),('91','Kiên Giang','Tỉnh','C'),('92','Cần Thơ','Thành Phố','C'),('93','Hậu Giang','Tỉnh','C'),('94','Sóc Trăng','Tỉnh','C'),('95','Bạc Liêu','Tỉnh','C'),('96','Cà Mau','Tỉnh','C');
 /*!40000 ALTER TABLE `province` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `status` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `GHTK_STATUS_ID` int(11) DEFAULT NULL,
+  `GHTK_STATUS_NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status`
+--
+
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+INSERT INTO `status` VALUES (1,'Hủy đơn hàng',-1,'Hủy đơn hàng'),(5,'Đã đóng gói xong, đang chờ công ty vận chuyển đến lấy',1,'Chưa tiếp nhận'),(6,'Đã xuất kho DalaFarm và được tiếp nhận bởi công ty vận chuyển',2,'Đã tiếp nhận'),(7,'Đã lấy hàng/Đã nhập kho của công ty vận chuyển',3,'Đã lấy hàng/Đã nhập kho'),(8,'Đã điều phối giao hàng/Đang giao hàng',4,'Đã điều phối giao hàng/Đang giao hàng'),(9,'Đã giao hàng/Chưa đối soát',5,'Đã giao hàng/Chưa đối soát'),(10,'Đã đối soát',6,'Đã đối soát'),(11,'Không lấy được hàng',7,'Không lấy được hàng'),(12,'Hoãn lấy hàng',8,'Hoãn lấy hàng'),(13,'Không giao được hàng',9,'Không giao được hàng'),(14,'Có chậm trễ trong việc giao hàng',10,'Delay giao hàng'),(15,'Đã giao hàng thành công',11,'Đã đối soát công nợ trả hàng'),(16,'Đã điều phối lấy hàng/Đang lấy hàng',12,'Đã điều phối lấy hàng/Đang lấy hàng'),(17,'Đang trả hàng (COD cầm hàng đi trả)',20,'Đang trả hàng (COD cầm hàng đi trả)'),(18,'Đã trả hàng (COD đã trả xong hàng)',21,'Đã trả hàng (COD đã trả xong hàng)'),(19,'Shipper báo đã lấy hàng',123,'Shipper báo đã lấy hàng'),(20,'Shipper (nhân viên lấy/giao hàng) báo không lấy được hàng',127,'Shipper (nhân viên lấy/giao hàng) báo không lấy được hàng'),(21,'Shipper báo có chậm trễ trong việc lấy hàng',128,'Shipper báo delay lấy hàng'),(22,'Shipper báo đã giao hàng',45,'Shipper báo đã giao hàng'),(23,'Shipper báo không giao được giao hàng',49,'Shipper báo không giao được giao hàng'),(24,'Shipper báo có chậm trễ trong việc giao hàng',410,'Shipper báo delay giao hàng');
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `supplier`
+--
+
+DROP TABLE IF EXISTS `supplier`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `supplier` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `supplier`
+--
+
+LOCK TABLES `supplier` WRITE;
+/*!40000 ALTER TABLE `supplier` DISABLE KEYS */;
+INSERT INTO `supplier` VALUES (1,'Giao Hàng Tiết Kiệm');
+/*!40000 ALTER TABLE `supplier` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vendor`
+--
+
+DROP TABLE IF EXISTS `vendor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vendor` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vendor`
+--
+
+LOCK TABLES `vendor` WRITE;
+/*!40000 ALTER TABLE `vendor` DISABLE KEYS */;
+INSERT INTO `vendor` VALUES (1,'Giao Hàng Tiết Kiệm'),(2,'Tin Logistic');
+/*!40000 ALTER TABLE `vendor` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -262,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-25 20:13:29
+-- Dump completed on 2017-09-03 22:25:50
