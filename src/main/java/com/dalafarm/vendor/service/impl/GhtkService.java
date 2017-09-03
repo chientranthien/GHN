@@ -100,9 +100,12 @@ public class GhtkService extends AbstractLogisticService {
             HttpEntity<?> entity = buildEntityForPost(o);
             GhtkOrderResponse ghtkOrder = sendOrderRequestToGhtk(entity);
 
-            ResponseHelper.insertVendorOrderResponseIntoOrder(ghtkOrder,o);
-
-            orderRepository.save(o);
+            Order returnedOrder = ResponseHelper.insertVendorOrderResponseIntoOrder(ghtkOrder,o);
+            if (returnedOrder == null) {
+                throw new RuntimeException();
+            }else{
+                orderRepository.save(o);
+            }
         });
 
         return response;

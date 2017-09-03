@@ -48,7 +48,7 @@ public class OrderModelToOrderMapper {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setOrderId(orderModel.getOrderId());
         orderDetail.setFromPerson(fromPersonDefault);
-        orderDetail.setCod(orderModel.getSubtotal());
+        orderDetail.setGrandTotal(orderModel.getSubtotal());
         orderDetail.setPickupAddress(pickupAddressDefault);
         orderDetail.setPickupDistrictId(pickupDistrictIdDefault);
         orderDetail.setPickupTel(pickupTelDefault);

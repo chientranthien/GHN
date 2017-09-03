@@ -1,6 +1,10 @@
 package com.dalafarm.vendor.controller.frontend;
 
+import com.dalafarm.vendor.repository.OrderRepository;
+import com.dalafarm.vendor.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -8,6 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class FrontendController {
+
+    @Autowired
+    private OrderService orderService;
+
     @GetMapping("/")
     public String home1() {
         return "/home";
@@ -19,7 +27,8 @@ public class FrontendController {
     }
 
     @GetMapping("/admin")
-    public String admin() {
+    public String admin(Model model) {
+        model.addAttribute("orders", orderService.getAllOrdersForFrontend());
         return "/admin";
     }
 

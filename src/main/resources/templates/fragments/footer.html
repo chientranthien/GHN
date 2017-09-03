@@ -9,16 +9,23 @@
 
         <footer>
             <!-- this is footer -->
-            © 2017 mkyong.com
+            © 2017 dalafarm.com.vn
             <span sec:authorize="isAuthenticated()">
                 | Logged user: <span sec:authentication="name"></span> |
                 Roles: <span sec:authentication="principal.authorities"></span> |
                 <a th:href="@{/logout}">Sign Out</a>
             </span>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <script type="text/javascript"
-                    src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script type="text/javascript"
+            src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $('#orderTable').DataTable();
+                });
+            </script>
         </footer>
     </div>
 

@@ -38,7 +38,7 @@ public class OrderModelToOrderMapperTest {
         assertEquals(order.getOrderDetail().getOrderId(), "4CYOAY");
         assertEquals(order.getOrderDetail().getDropDistrictId(), "971");
         assertEquals(order.getOrderDetail().getToPerson(), "Vu Test");
-        assertTrue(Long.compare(order.getOrderDetail().getCod(), 800000) == 0);
+        assertTrue(Long.compare(order.getOrderDetail().getGrandTotal(), 800000) == 0);
         assertTrue(order.getOrderDetail().isFreeship());
         assertEquals(order.getOrderDetail().getDropTel(), "+84905551287");
         assertEquals(order.getOrderDetail().getFromPerson(), "DalaFarm");
@@ -46,9 +46,5 @@ public class OrderModelToOrderMapperTest {
         assertEquals(order.getOrderDetail().getPickupDistrictId(), "772");
         assertEquals(order.getOrderDetail().getPickupTel(), "0941336174 - 0906951498");
         assertEquals(order.getOrderProducts().size(), 3);
-//        assertEquals(order.getOrderDetail().getOrderId(), "4CYOAY");
-//        assertEquals(order.getOrderDetail().getOrderId(), "4CYOAY");
-//        assertEquals(order.getOrderDetail().getOrderId(), "4CYOAY");
-//        assertEquals(order.getOrderDetail().getOrderId(), "4CYOAY");
     }
 }

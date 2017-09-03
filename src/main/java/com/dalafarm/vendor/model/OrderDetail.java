@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -16,7 +15,7 @@ public class OrderDetail {
     private String fromPerson;
 
     @NotNull
-    private Integer cod;
+    private Integer grandTotal;
 
     @NotNull
     private String pickupAddress;
@@ -94,12 +93,12 @@ public class OrderDetail {
         this.fromPerson = fromPerson;
     }
 
-    public Integer getCod() {
-        return cod;
+    public Integer getGrandTotal() {
+        return grandTotal;
     }
 
-    public void setCod(Integer cod) {
-        this.cod = cod;
+    public void setGrandTotal(Integer grandTotal) {
+        this.grandTotal = grandTotal;
     }
 
     public String getPickupAddress() {
