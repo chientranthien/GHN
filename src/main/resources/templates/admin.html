@@ -13,15 +13,12 @@
         <h1>Danh sách đơn hàng</h1>
 
         <h2 th:inline="text">Chào [[${#httpServletRequest.remoteUser}]]!</h2>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
-        </form>
 
     </div>
 
     <div class="orders">
 
-        <table id="orderTable" class="table table-striped table-bordered table-hover">
+        <table id="orderTable" class="table table-striped table-hover">
             <thead>
                 <th>Mã đơn hàng</th>
                 <th>Mã đơn hàng GHTK</th>
@@ -50,7 +47,23 @@
                     <td th:text="${order.orderDetail.grandTotal}"></td>
                     <td th:text="${order.orderDetail.dropEmail}"></td>
                     <td th:text="${order.orderDetail.statusId}"></td>
-                    <td th:text="${order.products}"></td>
+                    <td>
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr th:each="product: ${order.products}">
+                                    <td th:text="${product.name}"></td>
+                                    <td>
+                                        <span th:each="orderProduct : ${order.orderProducts}"
+                                              th:object="${orderProduct}"
+                                              th:if="${orderProduct.productId} == ${product.id}">
+                                          <span th:text="*{quantity}"></span>
+                                        </span>
+                                    </td>
+                                    <!--<td th:text="${order.orderProducts.?[productId.equals(product.id)]}"></td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                     <td th:text="${order.orderDetail.estimatedPickupTime}"></td>
                     <td th:text="${order.orderDetail.estimatedDeliverTime}"></td>
                     <td><a th:if="${order.orderDetail.statusId == 5}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng đơn hàng</a> </td>
