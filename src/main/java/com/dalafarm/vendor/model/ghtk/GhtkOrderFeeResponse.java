@@ -13,7 +13,7 @@ public class GhtkOrderFeeResponse {
     @JsonProperty("message")
     private String message;
 
-    @JsonProperty("shippingFee")
+    @JsonProperty("fee")
     private OrderFeeDetail orderFeeDetail;
 
     public boolean isSuccess() {
@@ -89,7 +89,7 @@ public class GhtkOrderFeeResponse {
         @JsonProperty("name")
         String serviceName;
 
-        @JsonProperty("shippingFee")
+        @JsonProperty("fee")
         Integer shippingFee;
 
         @JsonProperty("insurance_fee")
