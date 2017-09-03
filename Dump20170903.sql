@@ -62,7 +62,7 @@ CREATE TABLE `order_product` (
   CONSTRAINT `FK_ORDER` FOREIGN KEY (`ORDER_ID`) REFERENCES `orders` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_PRODUCT` FOREIGN KEY (`PRODUCT_ID`) REFERENCES `product` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FKl5mnj9n0di7k1v90yxnthkc73` FOREIGN KEY (`ORDER_ID`) REFERENCES `orders` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,7 +71,6 @@ CREATE TABLE `order_product` (
 
 LOCK TABLES `order_product` WRITE;
 /*!40000 ALTER TABLE `order_product` DISABLE KEYS */;
-INSERT INTO `order_product` VALUES (34,54,22,1),(35,54,26,1),(36,54,27,1),(37,55,22,1),(38,55,26,1),(39,55,27,1),(40,56,22,1),(41,56,26,1),(42,56,27,1),(43,57,16,1),(44,57,17,2),(45,57,22,1),(46,57,26,1),(47,57,27,1);
 /*!40000 ALTER TABLE `order_product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +119,6 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (54,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,NULL,NULL,NULL,NULL,6,'772','971','','4CYOAF',NULL,NULL,800000),(55,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,'S78169.853818',0,'Sáng 2017-09-04','Sáng 2017-09-05',6,'772','971','','4CYOAH',50000,NULL,800000),(56,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,'S78169.853819',0,'Sáng 2017-09-04','Sáng 2017-09-05',6,'772','971','','4CYOAJ',50000,NULL,800000),(57,'DalaFarm','317 Lô D, chung cư lạc long quân, đường Tống Văn Trân','0941336174 - 0906951498','Vu Test','Vu test','+84905551287','','',800000,1,'S78169.853820',0,'Sáng 2017-09-04','Sáng 2017-09-05',6,'772','971','','4CYOAK',55000,NULL,800000);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-09-03 22:25:50
+-- Dump completed on 2017-09-03 22:38:24
