@@ -7,7 +7,6 @@ import com.dalafarm.vendor.model.Response;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
 import com.dalafarm.vendor.util.LogisticServiceFactory;
-import com.dalafarm.vendor.util.VendorId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,28 +20,25 @@ import javax.validation.Valid;
 @RequestMapping("v1")
 public class OrderController {
 
-
     @Autowired
     OrderRepository orderRepository;
 
     @Autowired
     LogisticServiceFactory logisticServiceFactory;
 
-    @RequestMapping("order/{id}")
-    public Object getOrder(@PathVariable("id") Long id) {
-        return orderRepository.findOne(id);
+    @RequestMapping("order/{orderId}")
+    public Object getOrder(@PathVariable("orderId") String orderId) {
+        return orderRepository.findByOrderDetailOrderId(orderId);
     }
 
-    @RequestMapping(value = "order/{id}/status", method = RequestMethod.GET)
-    public OrderStatusResponse getOrderStatus(@PathVariable("id") String orderId) {
-        //currently hard coding to giao hang tiet kiem
-        LogisticService logisticService = logisticServiceFactory.getLogisticService(VendorId.GHTK);
+    @RequestMapping(value = "order/{orderId}/status", method = RequestMethod.GET)
+    public OrderStatusResponse getOrderStatus(@PathVariable("orderId") String orderId) {
+        LogisticService logisticService = getLogisticServiceBasedOnOrder(orderRepository.findByOrderDetailOrderId(orderId));
         return logisticService.getOrderStatus(orderId);
     }
 
     @RequestMapping(value = "order/{id}/activate", method = RequestMethod.GET)
     public Response activateOrder(@PathVariable("id") Long orderId) {
-
         Order order = orderRepository.findOne(orderId);
         LogisticService logisticService = logisticServiceFactory.getLogisticService(order.getOrderDetail().getVendorId());
         return logisticService.activateOrder(order);
@@ -55,9 +51,18 @@ public class OrderController {
 
     @RequestMapping(value = "order", method = RequestMethod.POST)
     public OrderResponse order(@RequestBody @Valid Order order) {
-        //currently hard coding to giao hang tiet kiem
-        LogisticService logisticService = logisticServiceFactory.getLogisticService(VendorId.GHTK);
+        LogisticService logisticService = getLogisticServiceBasedOnOrder(order);
         return logisticService.createOrder(order);
+    }
+
+    private LogisticService getLogisticServiceBasedOnOrder(@RequestBody @Valid Order order) {
+        LogisticService logisticService;
+        if(order.getOrderDetail().getVendorId() == null){
+            logisticService = logisticServiceFactory.getDefaultLogisticService();
+        }else{
+            logisticService = logisticServiceFactory.getLogisticService(order.getOrderDetail().getVendorId());
+        }
+        return logisticService;
     }
 
     @ExceptionHandler

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by chien on 8/3/17.
  */
 public interface OrderRepository  extends CrudRepository<Order,Long> {
-
+    Order findByOrderDetailOrderId(String orderId);
 }
