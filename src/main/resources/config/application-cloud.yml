@@ -1,6 +1,6 @@
 ghtk:
-  api_token: 947Dde88E641E9989C353cCD02E6FDa1A547b53a
-  url_service: https://dev.giaohangtietkiem.vn/
+  api_token: ${GHTK_API_TOKEN}
+  url_service: ${GHTK_API_URL}
 
 spring:
   jpa.hibernate.ddl-auto: update
