@@ -2,15 +2,17 @@ package com.dalafarm.vendor.service;
 
 import com.dalafarm.vendor.model.Order;
 import com.dalafarm.vendor.model.OrderProduct;
+import com.dalafarm.vendor.model.OrderStatusRequest;
 import com.dalafarm.vendor.model.Product;
 import com.dalafarm.vendor.repository.OrderRepository;
+import com.dalafarm.vendor.repository.OrderStatusRequestRepository;
 import com.dalafarm.vendor.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 /**
@@ -23,6 +25,9 @@ public class OrderService {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderStatusRequestRepository orderStatusRequestRepository;
 
     public Iterable<Order> getAllOrdersForFrontend(){
         Iterable<Order> orders = orderRepository.findAll();
@@ -38,5 +43,22 @@ public class OrderService {
                     .collect(Collectors.toList()));
             return o;
         }).collect(Collectors.toList());
+    }
+
+    public void updateOrderStatus(OrderStatusRequest orderStatusRequest) {
+        persistOrderStatusRequest(orderStatusRequest);
+        Order order = orderRepository.findByOrderDetailOrderId(orderStatusRequest.getOrderId());
+        if (order != null) {
+            order.getOrderDetail().setStatusId(orderStatusRequest.getStatusId());
+            order.setLastModifiedDate(orderStatusRequest.getActionTime());
+            orderRepository.save(order);
+        } else {
+            throw new RuntimeException("Order not found");
+        }
+    }
+
+    private void persistOrderStatusRequest(OrderStatusRequest orderStatusRequest) {
+        orderStatusRequest.setCreatedDate(new Date());
+        orderStatusRequestRepository.save(orderStatusRequest);
     }
 }
