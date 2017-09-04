@@ -8,6 +8,7 @@ import com.dalafarm.vendor.service.LogisticService;
 import com.dalafarm.vendor.util.ResponseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,6 +26,8 @@ public abstract class AbstractLogisticService implements LogisticService {
         if(existingOrder != null){
             order = updateOrder(existingOrder, order);
         }else{
+            order.setCreatedDate(new Date());
+            order.setLastModifiedDate(new Date());
             order = orderRepository.save(order);
         }
 
@@ -40,6 +43,7 @@ public abstract class AbstractLogisticService implements LogisticService {
         }).collect(Collectors.toList());
         existingOrder.getOrderProducts().clear();
         existingOrder.getOrderProducts().addAll(newOrderProducts);
+        existingOrder.setLastModifiedDate(new Date());
         return orderRepository.save(existingOrder);
     }
 }

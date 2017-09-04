@@ -10,7 +10,8 @@ import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.repository.StatusRepository;
 import com.dalafarm.vendor.service.LogisticService;
 import com.dalafarm.vendor.service.StatusMapper;
-import com.dalafarm.vendor.util.*;
+import com.dalafarm.vendor.util.LogisticBuilder;
+import com.dalafarm.vendor.util.ResponseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.UUID;
+import java.util.Date;
 
 /**
  * Created by chien on 8/1/17.
@@ -104,6 +105,7 @@ public class GhtkService extends AbstractLogisticService {
             if (returnedOrder == null) {
                 throw new RuntimeException();
             }else{
+                o.setLastModifiedDate(new Date());
                 orderRepository.save(o);
             }
         });

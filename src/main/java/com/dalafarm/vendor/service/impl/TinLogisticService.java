@@ -1,19 +1,13 @@
 package com.dalafarm.vendor.service.impl;
 
-import com.dalafarm.vendor.controller.StatusController;
 import com.dalafarm.vendor.model.*;
-import com.dalafarm.vendor.model.ghtk.GhtkOrderResponse;
 import com.dalafarm.vendor.repository.DistrictRepository;
 import com.dalafarm.vendor.repository.OrderRepository;
-import com.dalafarm.vendor.repository.ProvinceRepository;
-import com.dalafarm.vendor.service.LogisticService;
-import com.dalafarm.vendor.util.ResponseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.mvc.ControllerLinkBuilder;
-import org.springframework.http.HttpEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * Created by chien on 8/13/17.
@@ -51,6 +45,7 @@ public class TinLogisticService extends AbstractLogisticService {
     @Override
     public Response activateOrder(Order order) {
         Response response = activateOrder(order, (o) -> {
+            o.setLastModifiedDate(new Date());
             orderRepository.save(o);
         });
 
