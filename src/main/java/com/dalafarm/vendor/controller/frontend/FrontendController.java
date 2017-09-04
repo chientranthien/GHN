@@ -25,10 +25,10 @@ public class FrontendController {
         return "home";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/orders")
     public String admin(Model model) {
         model.addAttribute("orders", orderService.getAllOrdersForFrontend());
-        return "admin";
+        return "orders";
     }
 
     @GetMapping("/login")
