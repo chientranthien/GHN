@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -13,6 +15,8 @@ import java.util.Date;
  */
 @Data
 @NoArgsConstructor
+@Entity
+@Table(name = "ORDER_STATUS_REQUEST")
 public class OrderStatusRequest {
     private Long id;
 
