@@ -57,6 +57,25 @@ public class GhtkOrderDetail {
     @NotNull
     private String dropEmail;
 
+    public Integer getIsFreeship() {
+        return isFreeship;
+    }
+
+    public void setIsFreeship(Integer isFreeship) {
+        this.isFreeship = isFreeship;
+    }
+
+    public void setIsFreeship(boolean isFreeship) {
+        if(isFreeship){
+            this.isFreeship = 1;
+        } else {
+            this.isFreeship = 0;
+        }
+    }
+
+    @JsonProperty("is_freeship")
+    private Integer isFreeship;
+
     private String note;
 
     private String id;

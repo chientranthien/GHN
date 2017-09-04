@@ -63,6 +63,7 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
         ghtkOrderDetail.setFromPerson(orderDetail.getFromPerson());
         ghtkOrderDetail.setPickupMoney(orderDetail.getGrandTotal());
         ghtkOrderDetail.setPickupAddress(orderDetail.getPickupAddress());
+        ghtkOrderDetail.setIsFreeship(orderDetail.isFreeship());
 
         String pickupDistrictId = orderDetail.getPickupDistrictId();
         District pickupDistrict = districtRepository.findOne(pickupDistrictId);
