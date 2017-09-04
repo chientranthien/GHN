@@ -22,4 +22,9 @@ public class StatusMapper {
 			return vendorSpecificStatus;
 		}
 	}
+
+	public Integer mapVendorStatusIdToSelfStatusId(Integer statusId){
+		Status status = repository.findByGhtkStatusId(statusId);
+		return status.getId();
+	}
 }

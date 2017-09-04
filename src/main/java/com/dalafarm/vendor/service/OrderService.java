@@ -29,6 +29,9 @@ public class OrderService {
     @Autowired
     private OrderStatusRequestRepository orderStatusRequestRepository;
 
+    @Autowired
+    private StatusMapper statusMapper;
+
     public Iterable<Order> getAllOrdersForFrontend(){
         Iterable<Order> orders = orderRepository.findAll();
         Iterable<Product> products = productRepository.findAll();
@@ -49,7 +52,7 @@ public class OrderService {
         persistOrderStatusRequest(orderStatusRequest);
         Order order = orderRepository.findByOrderDetailOrderId(orderStatusRequest.getOrderId());
         if (order != null) {
-            order.getOrderDetail().setStatusId(orderStatusRequest.getStatusId());
+            order.getOrderDetail().setStatusId(statusMapper.mapVendorStatusIdToSelfStatusId(orderStatusRequest.getStatusId()));
             order.setLastModifiedDate(orderStatusRequest.getActionTime());
             orderRepository.save(order);
         } else {
