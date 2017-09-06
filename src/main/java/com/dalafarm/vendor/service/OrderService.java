@@ -7,6 +7,7 @@ import com.dalafarm.vendor.model.Product;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.repository.OrderStatusRequestRepository;
 import com.dalafarm.vendor.repository.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.stream.StreamSupport;
  * Created by LeeU on 9/3/2017.
  */
 @Service
+@Slf4j
 public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
@@ -56,7 +58,7 @@ public class OrderService {
             order.setLastModifiedDate(orderStatusRequest.getActionTime());
             orderRepository.save(order);
         } else {
-            throw new RuntimeException("Order not found");
+            log.warn("Order not found by searching by order id={}", orderStatusRequest.getOrderId());
         }
     }
 

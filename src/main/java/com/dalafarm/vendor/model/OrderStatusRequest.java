@@ -21,7 +21,6 @@ public class OrderStatusRequest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
     @JsonProperty("order_id")
     private String orderId;
 
