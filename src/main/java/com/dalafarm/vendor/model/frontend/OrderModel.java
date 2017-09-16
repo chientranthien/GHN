@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import java.util.Map;
 
 /**
+ * This object is used to receive data from website
  * Created by LeeU on 9/3/2017.
  */
 public class OrderModel {

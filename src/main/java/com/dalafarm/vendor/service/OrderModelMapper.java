@@ -4,6 +4,7 @@ import com.dalafarm.vendor.model.Order;
 import com.dalafarm.vendor.model.OrderDetail;
 import com.dalafarm.vendor.model.OrderProduct;
 import com.dalafarm.vendor.model.Product;
+import com.dalafarm.vendor.model.frontend.OrderBackOfficeModel;
 import com.dalafarm.vendor.model.frontend.OrderModel;
 import com.dalafarm.vendor.model.frontend.ProductModel;
 import com.dalafarm.vendor.repository.ProductRepository;
@@ -20,7 +21,7 @@ import java.util.stream.StreamSupport;
  * Created by LeeU on 9/3/2017.
  */
 @Service
-public class OrderModelToOrderMapper {
+public class OrderModelMapper {
     @Value("${dalafarm.name}")
     public String fromPersonDefault;
 
@@ -35,6 +36,9 @@ public class OrderModelToOrderMapper {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private StatusMapper statusMapper;
 
     public Order toOrder(OrderModel orderModel) {
         Order order = new Order();
@@ -79,5 +83,17 @@ public class OrderModelToOrderMapper {
             orderProduct.setQuantity(pm.getAmount());
             return orderProduct;
         }).collect(Collectors.toList());
+    }
+
+    public OrderBackOfficeModel toOrderBackOfficeModel(Order order) {
+        OrderBackOfficeModel orderBackOfficeModel = new OrderBackOfficeModel();
+        orderBackOfficeModel.setId(order.getId());
+        orderBackOfficeModel.setOrderDetail(order.getOrderDetail());
+        orderBackOfficeModel.setProducts(order.getProducts());
+        orderBackOfficeModel.setCreatedDate(order.getCreatedDate());
+        orderBackOfficeModel.setLastModifiedDate(order.getLastModifiedDate());
+        Integer statusCode = order.getOrderDetail().getStatusId();
+        orderBackOfficeModel.setStatus(statusMapper.getHumanReadableStatus(statusCode));
+        return orderBackOfficeModel;
     }
 }

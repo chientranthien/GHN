@@ -27,4 +27,8 @@ public class StatusMapper {
 		Status status = repository.findByGhtkStatusId(statusId);
 		return status.getId();
 	}
+
+	public String getHumanReadableStatus(int statusCode) {
+		return repository.findOne(statusCode).getName();
+	}
 }

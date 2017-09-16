@@ -4,7 +4,7 @@ import com.dalafarm.vendor.model.*;
 import com.dalafarm.vendor.model.frontend.OrderModel;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
-import com.dalafarm.vendor.service.OrderModelToOrderMapper;
+import com.dalafarm.vendor.service.OrderModelMapper;
 import com.dalafarm.vendor.service.OrderService;
 import com.dalafarm.vendor.util.LogisticServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class OrderController {
     LogisticServiceFactory logisticServiceFactory;
 
     @Autowired
-    OrderModelToOrderMapper orderModelToOrderMapper;
+    OrderModelMapper orderModelMapper;
 
     @Autowired
     OrderService orderService;
@@ -57,7 +57,7 @@ public class OrderController {
 
     @RequestMapping(value = "order", method = RequestMethod.POST)
     public OrderResponse order(@RequestBody @Valid OrderModel orderModel) {
-        Order order = orderModelToOrderMapper.toOrder(orderModel);
+        Order order = orderModelMapper.toOrder(orderModel);
         LogisticService logisticService = getLogisticServiceBasedOnOrder(order);
         return logisticService.createOrder(order);
     }

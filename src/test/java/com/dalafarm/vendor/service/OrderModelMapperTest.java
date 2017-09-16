@@ -20,9 +20,9 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class OrderModelToOrderMapperTest {
+public class OrderModelMapperTest {
     @Autowired
-    OrderModelToOrderMapper mapper;
+    OrderModelMapper mapper;
 
     @Test
     public void testMapper() throws IOException {

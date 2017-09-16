@@ -4,6 +4,7 @@ import com.dalafarm.vendor.model.Order;
 import com.dalafarm.vendor.model.OrderProduct;
 import com.dalafarm.vendor.model.OrderStatusRequest;
 import com.dalafarm.vendor.model.Product;
+import com.dalafarm.vendor.model.frontend.OrderBackOfficeModel;
 import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.repository.OrderStatusRequestRepository;
 import com.dalafarm.vendor.repository.ProductRepository;
@@ -34,7 +35,10 @@ public class OrderService {
     @Autowired
     private StatusMapper statusMapper;
 
-    public Iterable<Order> getAllOrdersForFrontend(){
+    @Autowired
+    private OrderModelMapper orderModelMapper;
+
+    public Iterable<OrderBackOfficeModel> getAllOrdersForFrontend(){
         Iterable<Order> orders = orderRepository.findAll();
         Iterable<Product> products = productRepository.findAll();
         return StreamSupport.stream(orders.spliterator(), true).map(o -> {
@@ -47,7 +51,10 @@ public class OrderService {
             })
                     .collect(Collectors.toList()));
             return o;
-        }).collect(Collectors.toList());
+        })
+                .map(orderModelMapper::toOrderBackOfficeModel)
+                .collect(Collectors.toList());
+
     }
 
     public void updateOrderStatus(OrderStatusRequest orderStatusRequest) {
