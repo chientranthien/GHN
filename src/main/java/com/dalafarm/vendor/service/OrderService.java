@@ -44,11 +44,11 @@ public class OrderService {
         return StreamSupport.stream(orders.spliterator(), true).map(o -> {
             List<OrderProduct> orderProductList = o.getOrderProducts();
             o.setProducts(orderProductList.stream().map(op -> {
-                Product product = StreamSupport.stream(products.spliterator(), true)
-                        .filter(p -> op.getProductId().compareTo(p.getId()) == 0)
-                        .findFirst().orElse(null);
-                return product;
-            })
+                        Product product = StreamSupport.stream(products.spliterator(), false)
+                                .filter(p -> op.getProductId().compareTo(p.getId()) == 0)
+                                .findFirst().orElse(null);
+                        return product;
+                    })
                     .collect(Collectors.toList()));
             return o;
         })
