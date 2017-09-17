@@ -70,7 +70,8 @@
                     <td th:text="${order.orderDetail.estimatedPickupTime}"></td>
                     <td th:text="${order.orderDetail.estimatedDeliverTime}"></td>
                     <td th:text="${order.lastModifiedDate}"></td>
-                    <td><a th:if="${order.orderDetail.statusId == 5}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng đơn hàng</a> </td>
+                    <td><a th:if="${order.orderDetail.statusId == 4}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng đơn hàng</a>
+                        <a th:if="${order.orderDetail.statusId == 5}" target="_blank" th:href="@{/v1/order/{id}/cancel(id=${order.id})}">Hủy đơn hàng</a> </td>
                 </tr>
             </tbody>
         </table>

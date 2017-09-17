@@ -53,6 +53,7 @@ public class ResponseHelper {
         orderDetail.setInsuranceFee(Integer.valueOf(ghtkOrderResponse.getInsuranceFee()));
         orderDetail.setVendorOrderId(ghtkOrderResponse.getSupplierOrderId());
         orderDetail.setInsuranceFee(Integer.valueOf(ghtkOrderResponse.getInsuranceFee()));
+        orderDetail.setStatusId(5);
         return order;
     }
 

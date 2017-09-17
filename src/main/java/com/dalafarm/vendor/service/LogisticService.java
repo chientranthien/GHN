@@ -24,8 +24,8 @@ public interface LogisticService {
     Response activateOrder(Order order);
 
     default Response activateOrder(Order order, Consumer<Order> onActive) {
-        final Integer ACTIVE_CODE = 6;
-        final Integer INACTIVE_CODE = 5;
+        final Integer ACTIVE_CODE = 5;
+        final Integer INACTIVE_CODE = 4;
 
         final String SUCCESS_MESSAGE = "The Order was activated and forwarded to the vendor";
         final String FAILED_MESSAGE = "This Order had been activated already";

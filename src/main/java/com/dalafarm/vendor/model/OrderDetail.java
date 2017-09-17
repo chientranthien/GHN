@@ -65,7 +65,7 @@ public class OrderDetail {
 
     private String estimatedDeliverTime;
 
-    private Integer statusId = 25;
+    private Integer statusId = 4;
 
     private Float weightInGram;
 
