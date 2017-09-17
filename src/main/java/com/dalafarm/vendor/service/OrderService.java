@@ -41,7 +41,7 @@ public class OrderService {
     public Iterable<OrderBackOfficeModel> getAllOrdersForFrontend(){
         Iterable<Order> orders = orderRepository.findAll();
         Iterable<Product> products = productRepository.findAll();
-        return StreamSupport.stream(orders.spliterator(), true).map(o -> {
+        return StreamSupport.stream(orders.spliterator(), false).map(o -> {
             List<OrderProduct> orderProductList = o.getOrderProducts();
             o.setProducts(orderProductList.stream().map(op -> {
                         Product product = StreamSupport.stream(products.spliterator(), false)
