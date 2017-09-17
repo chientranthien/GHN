@@ -90,6 +90,7 @@ public class OrderModelMapper {
         orderBackOfficeModel.setId(order.getId());
         orderBackOfficeModel.setOrderDetail(order.getOrderDetail());
         orderBackOfficeModel.setProducts(order.getProducts());
+        orderBackOfficeModel.setOrderProducts(order.getOrderProducts());
         orderBackOfficeModel.setCreatedDate(order.getCreatedDate());
         orderBackOfficeModel.setLastModifiedDate(order.getLastModifiedDate());
         Integer statusCode = order.getOrderDetail().getStatusId();
