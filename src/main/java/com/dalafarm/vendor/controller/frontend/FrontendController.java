@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+
 /**
  * Created by LeeU on 9/3/2017.
  */
@@ -28,6 +31,9 @@ public class FrontendController {
     @GetMapping("/orders")
     public String admin(Model model) {
         model.addAttribute("orders", orderService.getAllOrdersForFrontend());
+        SimpleDateFormat displayDateFormatter = new SimpleDateFormat( "dd MMM yyyy HH:mm:ss zzz" );
+        displayDateFormatter.setTimeZone(TimeZone.getTimeZone("GMT+7:00"));
+        model.addAttribute( "displayDateFormatter", displayDateFormatter );
         return "orders";
     }
 

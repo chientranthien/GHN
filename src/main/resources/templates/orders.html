@@ -39,7 +39,7 @@
             </thead>
             <tbody>
                 <tr th:each="order : ${orders}">
-                    <td th:text="${order.createdDate}? ${#dates.format(order.createdDate, 'dd/MM/yyyy HH:mm zzz')} : ''"></td>
+                    <td th:text="${order.createdDate != null? displayDateFormatter.format(order.createdDate): ' '}"></td>
                     <td th:text="${order.orderDetail.orderId}"></td>
                     <td th:text="${order.orderDetail.vendorOrderId}"></td>
                     <td th:text="${order.orderDetail.toPerson}"></td>
