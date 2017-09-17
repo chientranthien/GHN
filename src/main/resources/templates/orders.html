@@ -29,7 +29,7 @@
                 <th>Quận Huyện</th>
                 <!--<th>Tỉnh Thành</th>-->
                 <th>Tổng tiền</th>
-                <th>Email</th>
+                <th>Ghi chú</th>
                 <th>Trạng thái</th>
                 <th>Sản phẩm</th>
                 <th>Dự kiến lấy hàng</th>
@@ -39,7 +39,7 @@
             </thead>
             <tbody>
                 <tr th:each="order : ${orders}">
-                    <td th:text="${order.createdDate}"></td>
+                    <td th:text="${order.createdDate}? ${#dates.format(order.createdDate, 'dd/MM/yyyy HH:mm zzz')} : ''"></td>
                     <td th:text="${order.orderDetail.orderId}"></td>
                     <td th:text="${order.orderDetail.vendorOrderId}"></td>
                     <td th:text="${order.orderDetail.toPerson}"></td>
@@ -48,7 +48,7 @@
                     <td th:text="${order.orderDetail.dropDistrictId}"></td>
                     <!--<td th:text="${order.orderDetail.dropProvince}"></td>-->
                     <td th:text="${#numbers.formatDecimal(order.orderDetail.grandTotal, 0, 'COMMA', 0, 'POINT')}"></td>
-                    <td th:text="${order.orderDetail.dropEmail}"></td>
+                    <td th:text="${order.orderDetail.note}"></td>
                     <td th:text="${order.status}"></td>
                     <td>
                         <table class="table table-striped">
@@ -69,7 +69,7 @@
                     </td>
                     <td th:text="${order.orderDetail.estimatedPickupTime}"></td>
                     <td th:text="${order.orderDetail.estimatedDeliverTime}"></td>
-                    <td th:text="${order.lastModifiedDate}"></td>
+                    <td th:text="${order.lastModifiedDate}? ${#dates.format(order.lastModifiedDate, 'dd/MM/yyyy HH:mm zzz')} : ''"></td>
                     <td><a th:if="${order.orderDetail.statusId == 4}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng đơn hàng</a>
                         <a th:if="${order.orderDetail.statusId == 5}" target="_blank" th:href="@{/v1/order/{id}/cancel(id=${order.id})}">Hủy đơn hàng</a> </td>
                 </tr>
