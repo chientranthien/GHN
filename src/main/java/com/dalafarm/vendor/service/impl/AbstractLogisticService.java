@@ -35,7 +35,16 @@ public abstract class AbstractLogisticService implements LogisticService {
     }
 
     protected Order updateOrder(Order existingOrder, Order newOrder){
-        existingOrder.setOrderDetail(newOrder.getOrderDetail());
+        existingOrder.getOrderDetail().setValue(newOrder.getOrderDetail().getValue());
+        existingOrder.getOrderDetail().setGrandTotal(newOrder.getOrderDetail().getGrandTotal());
+        existingOrder.getOrderDetail().setNote(newOrder.getOrderDetail().getNote());
+        existingOrder.getOrderDetail().setWeightInGram(newOrder.getOrderDetail().getWeightInGram());
+        existingOrder.getOrderDetail().setDropAddress(newOrder.getOrderDetail().getDropAddress());
+        existingOrder.getOrderDetail().setDropDistrictId(newOrder.getOrderDetail().getDropDistrictId());
+        existingOrder.getOrderDetail().setDropEmail(newOrder.getOrderDetail().getDropEmail());
+        existingOrder.getOrderDetail().setDropTel(newOrder.getOrderDetail().getDropTel());
+        existingOrder.getOrderDetail().setShippingFee(newOrder.getOrderDetail().getShippingFee());
+        existingOrder.getOrderDetail().setToPerson(newOrder.getOrderDetail().getToPerson());
         List<OrderProduct> newOrderProducts = newOrder.getOrderProducts();
         newOrderProducts = newOrderProducts.stream().map(op -> {
             op.setOrderId(existingOrder.getId());
