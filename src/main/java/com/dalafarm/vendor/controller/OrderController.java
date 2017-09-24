@@ -6,6 +6,7 @@ import com.dalafarm.vendor.repository.OrderRepository;
 import com.dalafarm.vendor.service.LogisticService;
 import com.dalafarm.vendor.service.OrderModelMapper;
 import com.dalafarm.vendor.service.OrderService;
+import com.dalafarm.vendor.service.StatusMapper;
 import com.dalafarm.vendor.util.LogisticServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,6 +33,9 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    StatusMapper statusMapper;
+
     @RequestMapping("order/{orderId}")
     public Object getOrder(@PathVariable("orderId") String orderId) {
         return orderRepository.findByOrderDetailOrderId(orderId);
@@ -39,8 +43,12 @@ public class OrderController {
 
     @RequestMapping(value = "order/{orderId}/status", method = RequestMethod.GET)
     public OrderStatusResponse getOrderStatus(@PathVariable("orderId") String orderId) {
-        LogisticService logisticService = getLogisticServiceBasedOnOrder(orderRepository.findByOrderDetailOrderId(orderId));
-        return logisticService.getOrderStatus(orderId);
+        Order order = orderRepository.findByOrderDetailOrderId(orderId);
+        OrderStatusResponse orderStatusResponse = new OrderStatusResponse();
+        orderStatusResponse.setOrderId(orderId);
+        orderStatusResponse.setName(statusMapper.getHumanReadableStatus(order.getOrderDetail().getStatusId()));
+        orderStatusResponse.setLastUpdatedDate(order.getLastModifiedDate().toString());
+        return orderStatusResponse;
     }
 
     @RequestMapping(value = "order/{id}/activate", method = RequestMethod.GET)
