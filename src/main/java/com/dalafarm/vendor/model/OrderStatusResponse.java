@@ -1,8 +1,11 @@
 package com.dalafarm.vendor.model;
 
+import lombok.Data;
+
 /**
  * Created by chien on 8/5/17.
  */
+@Data
 public class OrderStatusResponse extends Response{
 
     private String orderId;
@@ -11,27 +14,5 @@ public class OrderStatusResponse extends Response{
 
     private String lastUpdatedDate;
 
-    public String getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastUpdatedDate() {
-        return lastUpdatedDate;
-    }
-
-    public void setLastUpdatedDate(String lastUpdatedDate) {
-        this.lastUpdatedDate = lastUpdatedDate;
-    }
+    private String estimatedDeliveryTime;
 }

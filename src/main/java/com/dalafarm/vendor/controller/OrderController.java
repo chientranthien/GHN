@@ -48,6 +48,7 @@ public class OrderController {
         orderStatusResponse.setOrderId(orderId);
         orderStatusResponse.setName(statusMapper.getHumanReadableStatus(order.getOrderDetail().getStatusId()));
         orderStatusResponse.setLastUpdatedDate(order.getLastModifiedDate().toString());
+        orderStatusResponse.setEstimatedDeliveryTime(order.getOrderDetail().getEstimatedDeliverTime());
         return orderStatusResponse;
     }
 
