@@ -31,7 +31,7 @@ public class FrontendController {
     @GetMapping("/orders")
     public String admin(Model model) {
         model.addAttribute("orders", orderService.getAllOrdersForFrontend());
-        SimpleDateFormat displayDateFormatter = new SimpleDateFormat( "dd/MM/yyyy HH:mm zzz" );
+        SimpleDateFormat displayDateFormatter = new SimpleDateFormat( "yyyy/MM/dd HH:mm zzz" );
         displayDateFormatter.setTimeZone(TimeZone.getTimeZone("GMT+7:00"));
         model.addAttribute( "displayDateFormatter", displayDateFormatter );
         return "orders";
