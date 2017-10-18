@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Sửa đơn hàng <span th:text="${order.orderDetail.orderId}"></span></h1>
+    </div>
+
+    <div class="orders">
+        <div class="form-group" aria-hidden="true">
+            <label id="createdDate" name="id" th:text="${order.createdDate != null? displayDateFormatter.format(order.createdDate): ' '}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="vendorOrderId" name="id" th:text="${order.orderDetail.vendorOrderId}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="toPerson" name="id" th:text="${order.orderDetail.toPerson}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="dropTel" name="id" th:text="${order.orderDetail.dropTel}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="dropAddress" name="id" th:text="${order.orderDetail.dropAddress}"></label>
+        </div><!--<div class="form-group" aria-hidden="true">
+            <label id="dropDistrictId" name="id" th:text="${order.orderDetail.dropDistrictId}"></label>
+        </div>--><div class="form-group" aria-hidden="true">
+            <label id="grandTotal" name="id" th:text="${#numbers.formatDecimal(order.orderDetail.grandTotal, 0, 'COMMA', 0, 'POINT')}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="note" name="id" th:text="${order.orderDetail.note}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="status" name="id" th:text="${order.status}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="estimatedPickupTime" name="id" th:text="${order.orderDetail.estimatedPickupTime}"></label>
+        </div><div class="form-group" aria-hidden="true">
+            <label id="estimatedDeliverTime" name="id" th:text="${order.orderDetail.estimatedDeliverTime}"></label>
+        </div>
+        <table class="table table-striped">
+            <tbody>
+            <tr th:each="product: ${order.products}">
+                <td th:text="${product.name}"></td>
+                <td>
+                            <span th:each="orderProduct : ${order.orderProducts}"
+                                  th:object="${orderProduct}"
+                                  th:if="${orderProduct.productId} == ${product.id}">
+                              <span th:text="*{quantity}"></span>
+                            </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+                <td th:text="${order.lastModifiedDate != null? displayDateFormatter.format(order.lastModifiedDate): ' '}"></td>
+                <td><a th:if="${order.orderDetail.statusId == 4}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng đơn hàng</a>
+                    <a th:if="${order.orderDetail.statusId == 5}" target="_blank" th:href="@{/v1/order/{id}/cancel(id=${order.id})}">Hủy đơn hàng</a> </td>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>

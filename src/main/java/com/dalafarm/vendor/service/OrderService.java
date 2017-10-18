@@ -57,6 +57,21 @@ public class OrderService {
 
     }
 
+    public OrderBackOfficeModel getOrderByOrderId(String orderId) {
+        Order order = orderRepository.findByOrderDetailOrderId(orderId);
+        Iterable<Product> products = productRepository.findAll();
+
+        List<OrderProduct> orderProductList = order.getOrderProducts();
+        order.setProducts(orderProductList.stream().map(op -> {
+            Product product = StreamSupport.stream(products.spliterator(), false)
+                    .filter(p -> op.getProductId().compareTo(p.getId()) == 0)
+                    .findFirst().orElse(null);
+            return product;
+        }).collect(Collectors.toList()));
+        return orderModelMapper.toOrderBackOfficeModel(order);
+
+    }
+
     public void updateOrderStatus(OrderStatusRequest orderStatusRequest) {
         persistOrderStatusRequest(orderStatusRequest);
         Order order = orderRepository.findByOrderDetailOrderId(orderStatusRequest.getOrderId());
