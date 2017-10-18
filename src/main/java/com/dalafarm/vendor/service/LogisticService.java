@@ -23,6 +23,8 @@ public interface LogisticService {
 
     Response activateOrder(Order order);
 
+    Response cancelBookingOrder(Order order);
+
     default Response activateOrder(Order order, Consumer<Order> onActive) {
         final Integer ACTIVE_CODE = 5;
         final Integer INACTIVE_CODE = 4;

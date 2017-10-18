@@ -55,4 +55,5 @@ public abstract class AbstractLogisticService implements LogisticService {
         existingOrder.setLastModifiedDate(new Date());
         return orderRepository.save(existingOrder);
     }
+
 }

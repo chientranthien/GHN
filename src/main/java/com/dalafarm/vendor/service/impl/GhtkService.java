@@ -113,6 +113,25 @@ public class GhtkService extends AbstractLogisticService {
         return response;
     }
 
+    @Override
+    public Response cancelBookingOrder(Order order) {
+        if (order.getOrderDetail().getStatusId().equals(5)) {
+            Response response = cancelOrderRequestToGhtk(order.getOrderDetail().getOrderId());
+            if(response.isSuccess()){
+                order.getOrderDetail().setStatusId(4);
+                orderRepository.save(order);
+                return response;
+            }
+        }
+        return null;
+    }
+
+    private Response cancelOrderRequestToGhtk(String orderId) {
+        String url = urlService + "services/shipment/cancel/partner_id:" + orderId;
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.exchange(url, HttpMethod.POST, buildHeaderOnlyEntityForPost(), Response.class).getBody();
+    }
+
     private GhtkOrderResponse sendOrderRequestToGhtk(HttpEntity<?> entity) {
         String url = urlService + "services/shipment/order";
         RestTemplate restTemplate = new RestTemplate();
@@ -126,6 +145,13 @@ public class GhtkService extends AbstractLogisticService {
         headers.set(TOKEN_HEADER, apiToken);
 
         return new HttpEntity<>(ghtkOrder, headers);
+    }
+
+    private HttpEntity<?> buildHeaderOnlyEntityForPost() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set(TOKEN_HEADER, apiToken);
+
+        return new HttpEntity<>(headers);
     }
 
     @Override

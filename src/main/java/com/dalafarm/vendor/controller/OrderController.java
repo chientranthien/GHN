@@ -66,6 +66,13 @@ public class OrderController {
         return logisticService.activateOrder(order);
     }
 
+    @RequestMapping(value = "order/{id}/cancel", method = RequestMethod.GET)
+    public Response cancelBookingOrder(@PathVariable("id") Long orderId) {
+        Order order = orderRepository.findOne(orderId);
+        LogisticService logisticService = logisticServiceFactory.getLogisticService(order.getOrderDetail().getVendorId());
+        return logisticService.cancelBookingOrder(order);
+    }
+
     @RequestMapping(value = "orders", method = RequestMethod.GET)
     public Object getAllOrders() {
         return orderRepository.findAll();
