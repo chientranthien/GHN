@@ -66,6 +66,7 @@ public class OrderModelMapper {
         orderDetail.setNote(orderModel.getInfo().getAdditionalNote());
         orderDetail.setValue(orderModel.getSubtotal());
         orderDetail.setVendorId(orderModel.getShippingVendor());
+        orderDetail.setShippingFee(Integer.parseInt(orderModel.getShippingCost()));
         return orderDetail;
     }
 
