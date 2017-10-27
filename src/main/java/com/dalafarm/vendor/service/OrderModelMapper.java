@@ -8,11 +8,15 @@ import com.dalafarm.vendor.model.frontend.OrderBackOfficeModel;
 import com.dalafarm.vendor.model.frontend.OrderModel;
 import com.dalafarm.vendor.model.frontend.ProductModel;
 import com.dalafarm.vendor.repository.ProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -20,6 +24,7 @@ import java.util.stream.StreamSupport;
 /**
  * Created by LeeU on 9/3/2017.
  */
+@Slf4j
 @Service
 public class OrderModelMapper {
     @Value("${dalafarm.name}")
@@ -40,10 +45,20 @@ public class OrderModelMapper {
     @Autowired
     private StatusMapper statusMapper;
 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
+
     public Order toOrder(OrderModel orderModel) {
         Order order = new Order();
         order.setOrderDetail(toOrderDetail(orderModel));
-
+        if (orderModel.getMeta() != null && orderModel.getMeta().getDate() != null) {
+            try {
+                Date createdDate = dateFormat.parse(orderModel.getMeta().getDate());
+                order.setCreatedDate(createdDate);
+                order.setLastModifiedDate(createdDate);
+            } catch (ParseException e) {
+                log.error("Error converting date", e);
+            }
+        }
         order.setOrderProducts(toOrderProducts(orderModel));
         return order;
     }
