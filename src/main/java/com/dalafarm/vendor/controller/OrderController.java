@@ -80,9 +80,8 @@ public class OrderController {
 
     @RequestMapping(value = "order", method = RequestMethod.POST)
     public OrderResponse order(@RequestBody @Valid OrderModel orderModel) {
-        log.info("Creating order");
+        log.info("Creating order with info {}", orderModel.toString());
         Order order = orderModelMapper.toOrder(orderModel);
-
         LogisticService logisticService = getLogisticServiceBasedOnOrder(order);
         return logisticService.createOrder(order);
     }
