@@ -26,8 +26,12 @@ public abstract class AbstractLogisticService implements LogisticService {
         if(existingOrder != null){
             order = updateOrder(existingOrder, order);
         }else{
-            order.setCreatedDate(new Date());
-            order.setLastModifiedDate(new Date());
+            if (order.getCreatedDate() == null) {
+                order.setCreatedDate(new Date());
+            }
+            if (order.getLastModifiedDate() == null) {
+                order.setLastModifiedDate(new Date());
+            }
             order = orderRepository.save(order);
         }
 
