@@ -249,3 +249,29 @@ Forward the request to logistic vendors such as Giao Hang Nhanh or Giao Hang Tie
     curl -X GET \
       'http://localhost:8080/v1/order/1/activate'
 * **Notes:**
+
+**EDIT ORDER**
+----
+* **URL**
+ /v1/order/{id}
+
+* **Method:**
+  `GET`
+ 
+
+* **Success Response:**
+  
+  * **Code:** 200 <br />
+    **Content:** `{
+                          "success": true,
+                          "message": "the Order was activated and forwarded to the vendor"
+                   }
+                     `
+ 
+
+* **Sample Call:**
+
+    ``` 
+    curl -X GET \
+      'http://localhost:8080/v1/order/1/activate'
+* **Notes:**
