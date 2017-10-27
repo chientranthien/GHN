@@ -39,6 +39,16 @@ public class Order {
 
     private Date lastModifiedDate;
 
+    private String promoCode;
+
+    public String getPromoCode() {
+        return promoCode;
+    }
+
+    public void setPromoCode(String promoCode) {
+        this.promoCode = promoCode;
+    }
+
     public Date getCreatedDate() {
         return createdDate;
     }

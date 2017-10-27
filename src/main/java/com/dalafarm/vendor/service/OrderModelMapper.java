@@ -60,6 +60,7 @@ public class OrderModelMapper {
             }
         }
         order.setOrderProducts(toOrderProducts(orderModel));
+        order.setPromoCode(orderModel.getPromoCode());
         return order;
     }
 
