@@ -8,17 +8,24 @@ import com.dalafarm.vendor.service.OrderModelMapper;
 import com.dalafarm.vendor.service.OrderService;
 import com.dalafarm.vendor.service.StatusMapper;
 import com.dalafarm.vendor.util.LogisticServiceFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by Vu on 8/13/2017.
  */
 @RestController
 @RequestMapping("v1")
+@Slf4j
 public class OrderController {
 
     @Autowired
@@ -59,6 +66,13 @@ public class OrderController {
         return logisticService.activateOrder(order);
     }
 
+    @RequestMapping(value = "order/{id}/cancel", method = RequestMethod.GET)
+    public Response cancelBookingOrder(@PathVariable("id") Long orderId) {
+        Order order = orderRepository.findOne(orderId);
+        LogisticService logisticService = logisticServiceFactory.getLogisticService(order.getOrderDetail().getVendorId());
+        return logisticService.cancelBookingOrder(order);
+    }
+
     @RequestMapping(value = "orders", method = RequestMethod.GET)
     public Object getAllOrders() {
         return orderRepository.findAll();
@@ -74,6 +88,26 @@ public class OrderController {
     @PutMapping(value = "order")
     public void updateOrderStatus(@RequestBody @Valid OrderStatusRequest orderStatusRequest){
         orderService.updateOrderStatus(orderStatusRequest);
+    }
+
+    @PostMapping(value = "queue/order-status", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public void storeOrderStatus(@RequestBody MultiValueMap<String, String> object){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssX");
+        OrderStatusRequest request = new OrderStatusRequest();
+        request.setOrderId(object.getFirst("partner_id"));
+        request.setVendorOrderId(object.getFirst("label_id"));
+        request.setStatusId(Integer.parseInt(object.getFirst("status_id")));
+        try {
+            request.setActionTime(dateFormat.parse(object.getFirst("action_time")));
+        } catch (ParseException e) {
+            log.error("Unparseable action_time", e);
+        }
+        request.setReasonCode(object.getFirst("reason_code"));
+        request.setReason(object.getFirst("reason"));
+        request.setWeight(Float.parseFloat(object.getFirst("weight")));
+        request.setShippingFee(Integer.parseInt(object.getFirst("fee")));
+        log.info("Order status received: {}", request.toString());
+        orderService.updateOrderStatus(request);
     }
 
     private LogisticService getLogisticServiceBasedOnOrder(@RequestBody @Valid Order order) {

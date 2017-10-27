@@ -52,5 +52,10 @@ public class TinLogisticService extends AbstractLogisticService {
         return response;
     }
 
+    @Override
+    public Response cancelBookingOrder(Order order) {
+        return null;
+    }
+
 
 }
