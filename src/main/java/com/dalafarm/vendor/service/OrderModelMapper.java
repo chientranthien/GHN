@@ -84,7 +84,11 @@ public class OrderModelMapper {
         orderDetail.setVendorId(orderModel.getShippingVendor());
         orderDetail.setShippingFee(Integer.parseInt(orderModel.getShippingCost()));
         if(orderModel.getStatus() != null && !orderModel.getStatus().isEmpty()) {
-            orderDetail.setStatusId(Integer.parseInt(orderModel.getStatus()));
+            try {
+                orderDetail.setStatusId(Integer.parseInt(orderModel.getStatus()));
+            } catch (NumberFormatException e) {
+                ;//do nothing
+            }
         }
         return orderDetail;
     }
