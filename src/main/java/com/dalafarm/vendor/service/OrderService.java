@@ -76,12 +76,21 @@ public class OrderService {
         persistOrderStatusRequest(orderStatusRequest);
         Order order = orderRepository.findByOrderDetailOrderId(orderStatusRequest.getOrderId());
         if (order != null) {
-            order.getOrderDetail().setStatusId(statusMapper.mapVendorStatusIdToSelfStatusId(orderStatusRequest.getStatusId()));
-            order.setLastModifiedDate(orderStatusRequest.getActionTime());
-            orderRepository.save(order);
+            saveOrderStatus(orderStatusRequest, order);
         } else {
-            log.warn("Order not found by searching by order id={}", orderStatusRequest.getOrderId());
+            order = orderRepository.findByOrderDetailVendorOrderId(orderStatusRequest.getVendorOrderId());
+            if (order != null) {
+                saveOrderStatus(orderStatusRequest, order);
+            }else{
+                log.warn("Order not found by searching by order id={}", orderStatusRequest.getOrderId());
+            }
         }
+    }
+
+    private void saveOrderStatus(OrderStatusRequest orderStatusRequest, Order order) {
+        order.getOrderDetail().setStatusId(statusMapper.mapVendorStatusIdToSelfStatusId(orderStatusRequest.getStatusId()));
+        order.setLastModifiedDate(orderStatusRequest.getActionTime());
+        orderRepository.save(order);
     }
 
     private void persistOrderStatusRequest(OrderStatusRequest orderStatusRequest) {
