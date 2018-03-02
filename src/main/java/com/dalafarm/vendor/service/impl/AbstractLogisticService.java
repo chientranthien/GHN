@@ -44,7 +44,10 @@ public abstract class AbstractLogisticService implements LogisticService {
         existingOrder.getOrderDetail().setNote(newOrder.getOrderDetail().getNote());
         existingOrder.getOrderDetail().setWeightInGram(newOrder.getOrderDetail().getWeightInGram());
         existingOrder.getOrderDetail().setDropAddress(newOrder.getOrderDetail().getDropAddress());
+        existingOrder.getOrderDetail().setDropDistrict(newOrder.getOrderDetail().getDropDistrict());
         existingOrder.getOrderDetail().setDropDistrictId(newOrder.getOrderDetail().getDropDistrictId());
+        existingOrder.getOrderDetail().setDropWardId(newOrder.getOrderDetail().getDropWardId());
+        existingOrder.getOrderDetail().setDropWard(newOrder.getOrderDetail().getDropWard());
         existingOrder.getOrderDetail().setDropEmail(newOrder.getOrderDetail().getDropEmail());
         existingOrder.getOrderDetail().setDropTel(newOrder.getOrderDetail().getDropTel());
         existingOrder.getOrderDetail().setShippingFee(newOrder.getOrderDetail().getShippingFee());

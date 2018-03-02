@@ -75,7 +75,10 @@ public class OrderModelMapper {
 
         orderDetail.setToPerson(orderModel.getInfo().getName());
         orderDetail.setDropAddress(orderModel.getInfo().getAddress());
+        orderDetail.setDropDistrict(orderModel.getInfo().getDistrict());
         orderDetail.setDropDistrictId(orderModel.getInfo().getDistrictId());
+        orderDetail.setDropWardId(orderModel.getInfo().getWardId());
+        orderDetail.setDropWard(orderModel.getInfo().getWard());
         orderDetail.setDropTel(orderModel.getInfo().getPhone1());
         orderDetail.setDropEmail(orderModel.getInfo().getEmail());
 
