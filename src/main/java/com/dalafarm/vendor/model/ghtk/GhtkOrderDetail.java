@@ -49,6 +49,10 @@ public class GhtkOrderDetail {
     @NotNull
     private String dropDistrict;
 
+    @JsonProperty("ward")
+    @NotNull
+    private String dropWard;
+
     @JsonProperty("tel")
     @NotNull
     private String dropTel;
@@ -192,5 +196,11 @@ public class GhtkOrderDetail {
         this.id = id;
     }
 
+    public String getDropWard() {
+        return dropWard;
+    }
 
+    public void setDropWard(String dropWard) {
+        this.dropWard = dropWard;
+    }
 }

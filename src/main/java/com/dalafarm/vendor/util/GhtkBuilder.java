@@ -76,8 +76,10 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
 
         String dropDistrictId = orderDetail.getDropDistrictId();
         District dropDistrict = districtRepository.findOne(dropDistrictId);
+
         ghtkOrderDetail.setDropProvince(dropDistrict.getProvince().getName());
         ghtkOrderDetail.setDropDistrict(dropDistrict.getName());
+        ghtkOrderDetail.setDropWard(order.getOrderDetail().getDropWard());
         ghtkOrderDetail.setDropTel(orderDetail.getDropTel());
         ghtkOrderDetail.setNote(orderDetail.getNote());
         ghtkOrderDetail.setId(orderDetail.getOrderId());
