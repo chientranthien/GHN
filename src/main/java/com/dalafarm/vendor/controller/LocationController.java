@@ -39,9 +39,9 @@ public class LocationController {
         return districtRepository.findByProvinceId(provinceId);
     }
 
-    @RequestMapping(value = "province/{provinceId}/wards", method = RequestMethod.GET)
-    Iterable<Ward> getWardByProvinceId(@PathVariable String provinceId) {
-        return wardRepository.findWardByProvinceId(provinceId);
+    @RequestMapping(value = "province/{districtId}/wards", method = RequestMethod.GET)
+    Iterable<Ward> getWardByProvinceId(@PathVariable String districtId) {
+        return wardRepository.findWardByDistrictId(districtId);
     }
 
 }

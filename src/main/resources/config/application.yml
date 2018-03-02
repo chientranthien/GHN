@@ -3,7 +3,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/dlf?useUnicode=yes&characterEncoding=UTF-8
     username: root
-    password: manager
+    password: dalafarm
   jackson:
     parser:
       ALLOW_UNQUOTED_CONTROL_CHARS: true

@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 public class Ward {
     @Id
-    @Column(name = "ward_id")
+    @Column(name = "wardid")
     private String id;
 
     private String name;
@@ -15,9 +15,9 @@ public class Ward {
     @JsonIgnore
     @ManyToOne
     @JoinColumn(
-            name = "provinceid"
+            name = "districtid"
     )
-    private Province province;
+    private District district;
 
     private String type;
 
@@ -43,11 +43,11 @@ public class Ward {
         this.name = name;
     }
 
-    public Province getProvince() {
-        return province;
+    public District getDistrict() {
+        return district;
     }
 
-    public void setProvince(Province province) {
-        this.province = province;
+    public void setDistrict(District district) {
+        this.district = district;
     }
 }
