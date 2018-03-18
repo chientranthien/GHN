@@ -28,6 +28,18 @@ public class GhtkOrderDetail {
     @NotNull
     private String pickupDistrict;
 
+    @JsonProperty("pick_ward")
+    @NotNull
+    private String pickupWard;
+
+    public String getPickupWard() {
+        return pickupWard;
+    }
+
+    public void setPickupWard(String pickupWard) {
+        this.pickupWard = pickupWard;
+    }
+
     @JsonProperty("pick_tel")
     @NotNull
     private String pickupTel;

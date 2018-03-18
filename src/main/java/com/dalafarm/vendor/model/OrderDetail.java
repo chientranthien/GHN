@@ -29,6 +29,9 @@ public class OrderDetail {
     private String pickupDistrictId;
 
     @NotNull
+    private String pickupWard;
+
+    @NotNull
     private String toPerson;
 
     @NotNull
