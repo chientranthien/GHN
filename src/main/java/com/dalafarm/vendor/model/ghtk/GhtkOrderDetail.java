@@ -16,6 +16,18 @@ public class GhtkOrderDetail {
     @NotNull
     private Integer pickupMoney;
 
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    @JsonProperty("value")
+    @NotNull
+    private Integer value;
+
     @JsonProperty("pick_address")
     @NotNull
     private String pickupAddress;

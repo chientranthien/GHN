@@ -9,15 +9,15 @@ spring:
       ALLOW_UNQUOTED_CONTROL_CHARS: true
 
 pickup_addr:
-  0:
+  lac_long_quan:
     name: DalaFarm
     districtId: 772
     ward: Phường 5
     address: 317 Lô D, chung cư Lạc Long Quân, đường Tống Văn Trân
-    tel: 0906951498
-  1:
+    tel: "0906951498"
+  quach_van_tuan:
     name: DalaFarm
     districtId: 766
     ward: Phường 12
     address: 39 Quách Văn Tuấn
-    tel: 0934737976
+    tel: "0934737976"

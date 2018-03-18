@@ -40,9 +40,10 @@ public class OrderModelMapperTest {
         assertTrue(order.getOrderDetail().isFreeship());
         assertEquals(order.getOrderDetail().getDropTel(), "+84905551287");
         assertEquals(order.getOrderDetail().getFromPerson(), "DalaFarm");
-        assertEquals(order.getOrderDetail().getPickupAddress(), "317 Lô D, chung cư Lạc Long Quân, đường Tống Văn Trân");
-        assertEquals(order.getOrderDetail().getPickupDistrictId(), "772");
-        assertEquals(order.getOrderDetail().getPickupTel(), "0941336174 - 0906951498");
+        assertEquals(order.getOrderDetail().getPickupAddress(), "39 Quách Văn Tuấn");
+        assertEquals(order.getOrderDetail().getPickupWard(), "Phường 12");
+        assertEquals(order.getOrderDetail().getPickupDistrictId(), "766");
+        assertEquals(order.getOrderDetail().getPickupTel(), "0934737976");
         assertEquals(order.getOrderProducts().size(), 3);
     }
 
@@ -62,9 +63,10 @@ public class OrderModelMapperTest {
         assertTrue(order.getOrderDetail().isFreeship());
         assertEquals(order.getOrderDetail().getDropTel(), "+84905551287");
         assertEquals(order.getOrderDetail().getFromPerson(), "DalaFarm");
-        assertEquals(order.getOrderDetail().getPickupAddress(), "317 Lô D, chung cư Lạc Long Quân, đường Tống Văn Trân");
-        assertEquals(order.getOrderDetail().getPickupDistrictId(), "772");
-        assertEquals(order.getOrderDetail().getPickupTel(), "0941336174 - 0906951498");
+        assertEquals(order.getOrderDetail().getPickupAddress(), "39 Quách Văn Tuấn");
+        assertEquals(order.getOrderDetail().getPickupWard(), "Phường 12");
+        assertEquals(order.getOrderDetail().getPickupDistrictId(), "766");
+        assertEquals(order.getOrderDetail().getPickupTel(), "0934737976");
         assertEquals(order.getOrderProducts().size(), 3);
     }
 }

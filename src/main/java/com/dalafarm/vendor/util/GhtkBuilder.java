@@ -62,6 +62,7 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
         GhtkOrderDetail ghtkOrderDetail = new GhtkOrderDetail();
         ghtkOrderDetail.setFromPerson(orderDetail.getFromPerson());
         ghtkOrderDetail.setPickupMoney(orderDetail.getGrandTotal());
+        ghtkOrderDetail.setValue(orderDetail.getGrandTotal());
         ghtkOrderDetail.setPickupAddress(orderDetail.getPickupAddress());
         ghtkOrderDetail.setIsFreeship(orderDetail.isFreeship());
 
