@@ -9,7 +9,7 @@ spring:
       ALLOW_UNQUOTED_CONTROL_CHARS: true
 
 pickup_addr:
-  2:
+  0:
     name: DalaFarm
     districtId: 772
     ward: Phường 5
