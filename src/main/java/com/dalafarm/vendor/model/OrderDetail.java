@@ -23,6 +23,9 @@ public class OrderDetail {
     private String pickupAddress;
 
     @NotNull
+    private String pickupAddressId;
+
+    @NotNull
     private String pickupTel;
 
     @NotNull

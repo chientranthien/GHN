@@ -10,12 +10,14 @@ spring:
 
 pickup_addr:
   lac_long_quan:
+    id: 886489
     name: DalaFarm
     districtId: 772
     ward: Phường 5
     address: 317 Lô D, chung cư Lạc Long Quân, đường Tống Văn Trân
     tel: "0906951498"
   quach_van_tuan:
+    id: 886521
     name: DalaFarm
     districtId: 766
     ward: Phường 12

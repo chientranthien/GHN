@@ -30,6 +30,9 @@ public class OrderModelMapper {
     @Value("${pickup_addr.quach_van_tuan.name}")
     public String fromPersonDefault;
 
+    @Value("${pickup_addr.quach_van_tuan.id}")
+    public String pickupAddressIdDefault;
+
     @Value("${pickup_addr.quach_van_tuan.address}")
     public String pickupAddressDefault;
 
@@ -72,6 +75,7 @@ public class OrderModelMapper {
         orderDetail.setOrderId(orderModel.getOrderId());
         orderDetail.setFromPerson(fromPersonDefault);
         orderDetail.setGrandTotal(orderModel.getSubtotal());
+        orderDetail.setPickupAddressId(pickupAddressIdDefault);
         orderDetail.setPickupAddress(pickupAddressDefault);
         orderDetail.setPickupDistrictId(pickupDistrictIdDefault);
         orderDetail.setPickupTel(pickupTelDefault);

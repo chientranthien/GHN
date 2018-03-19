@@ -32,6 +32,18 @@ public class GhtkOrderDetail {
     @NotNull
     private String pickupAddress;
 
+    @JsonProperty("pick_address_id")
+    @NotNull
+    private String pickupAddressId;
+
+    public String getPickupAddressId() {
+        return pickupAddressId;
+    }
+
+    public void setPickupAddressId(String pickupAddressId) {
+        this.pickupAddressId = pickupAddressId;
+    }
+
     @JsonProperty("pick_province")
     @NotNull
     private String pickupProvince;
