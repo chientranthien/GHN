@@ -27,22 +27,22 @@ import java.util.stream.StreamSupport;
 @Slf4j
 @Service
 public class OrderModelMapper {
-    @Value("${pickup_addr.quach_van_tuan.name}")
+    @Value("${pickup_addr.tran_van_quang.name}")
     public String fromPersonDefault;
 
-    @Value("${pickup_addr.quach_van_tuan.id}")
+    @Value("${pickup_addr.tran_van_quang.id}")
     public String pickupAddressIdDefault;
 
-    @Value("${pickup_addr.quach_van_tuan.address}")
+    @Value("${pickup_addr.tran_van_quang.address}")
     public String pickupAddressDefault;
 
-    @Value("${pickup_addr.quach_van_tuan.districtId}")
+    @Value("${pickup_addr.tran_van_quang.districtId}")
     public String pickupDistrictIdDefault;
 
-    @Value("${pickup_addr.quach_van_tuan.ward}")
+    @Value("${pickup_addr.tran_van_quang.ward}")
     public String pickupWardDefault;
 
-    @Value("${pickup_addr.quach_van_tuan.tel}")
+    @Value("${pickup_addr.tran_van_quang.tel}")
     public String pickupTelDefault;
 
     @Autowired
