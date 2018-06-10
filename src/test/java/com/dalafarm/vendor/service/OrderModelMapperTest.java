@@ -39,11 +39,11 @@ public class OrderModelMapperTest {
         assertTrue(Long.compare(order.getOrderDetail().getGrandTotal(), 800000) == 0);
         assertTrue(order.getOrderDetail().isFreeship());
         assertEquals(order.getOrderDetail().getDropTel(), "+84905551287");
-        assertEquals(order.getOrderDetail().getFromPerson(), "DalaFarm");
-        assertEquals(order.getOrderDetail().getPickupAddress(), "39 Quách Văn Tuấn");
-        assertEquals(order.getOrderDetail().getPickupWard(), "Phường 12");
+        assertEquals(order.getOrderDetail().getFromPerson(), "Vũ");
+        assertEquals(order.getOrderDetail().getPickupAddress(), "66/19/42 Trần Văn Quang");
+        assertEquals(order.getOrderDetail().getPickupWard(), "Phường 10");
         assertEquals(order.getOrderDetail().getPickupDistrictId(), "766");
-        assertEquals(order.getOrderDetail().getPickupTel(), "0934737976");
+        assertEquals(order.getOrderDetail().getPickupTel(), "0905551287");
         assertEquals(order.getOrderProducts().size(), 3);
     }
 
@@ -62,11 +62,11 @@ public class OrderModelMapperTest {
         assertTrue(Long.compare(order.getOrderDetail().getGrandTotal(), 800000) == 0);
         assertTrue(order.getOrderDetail().isFreeship());
         assertEquals(order.getOrderDetail().getDropTel(), "+84905551287");
-        assertEquals(order.getOrderDetail().getFromPerson(), "DalaFarm");
-        assertEquals(order.getOrderDetail().getPickupAddress(), "39 Quách Văn Tuấn");
-        assertEquals(order.getOrderDetail().getPickupWard(), "Phường 12");
+        assertEquals(order.getOrderDetail().getFromPerson(), "Vũ");
+        assertEquals(order.getOrderDetail().getPickupAddress(), "66/19/42 Trần Văn Quang");
+        assertEquals(order.getOrderDetail().getPickupWard(), "Phường 10");
         assertEquals(order.getOrderDetail().getPickupDistrictId(), "766");
-        assertEquals(order.getOrderDetail().getPickupTel(), "0934737976");
+        assertEquals(order.getOrderDetail().getPickupTel(), "0905551287");
         assertEquals(order.getOrderProducts().size(), 3);
     }
 }
