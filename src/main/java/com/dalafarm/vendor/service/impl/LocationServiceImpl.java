@@ -20,6 +20,9 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public String getDistrictNProvinceAsStr(String districtId) {
         District district = districtRepository.findOne(districtId);
+        if(district == null){
+            return "";
+        }
         StringBuilder districtNProvinceAsStr = new StringBuilder();
         districtNProvinceAsStr
                 .append(district.getType())
