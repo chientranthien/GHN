@@ -62,13 +62,16 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
         GhtkOrderDetail ghtkOrderDetail = new GhtkOrderDetail();
         ghtkOrderDetail.setFromPerson(orderDetail.getFromPerson());
         ghtkOrderDetail.setPickupMoney(orderDetail.getGrandTotal());
+        ghtkOrderDetail.setValue(orderDetail.getGrandTotal());
         ghtkOrderDetail.setPickupAddress(orderDetail.getPickupAddress());
+        ghtkOrderDetail.setPickupAddressId(orderDetail.getPickupAddressId());
         ghtkOrderDetail.setIsFreeship(orderDetail.isFreeship());
 
         String pickupDistrictId = orderDetail.getPickupDistrictId();
         District pickupDistrict = districtRepository.findOne(pickupDistrictId);
         ghtkOrderDetail.setPickupProvince(pickupDistrict.getProvince().getName());
         ghtkOrderDetail.setPickupDistrict(pickupDistrict.getName());
+        ghtkOrderDetail.setPickupWard(orderDetail.getPickupWard());
 
         ghtkOrderDetail.setPickupTel(orderDetail.getPickupTel());
         ghtkOrderDetail.setToPerson(orderDetail.getToPerson());
@@ -76,8 +79,10 @@ public class GhtkBuilder implements LogisticBuilder<GhtkOrder> {
 
         String dropDistrictId = orderDetail.getDropDistrictId();
         District dropDistrict = districtRepository.findOne(dropDistrictId);
+
         ghtkOrderDetail.setDropProvince(dropDistrict.getProvince().getName());
-        ghtkOrderDetail.setDropDistrict(dropDistrict.getName());
+        ghtkOrderDetail.setDropDistrict(dropDistrict.getType() + " " + dropDistrict.getName());
+        ghtkOrderDetail.setDropWard(order.getOrderDetail().getDropWard());
         ghtkOrderDetail.setDropTel(orderDetail.getDropTel());
         ghtkOrderDetail.setNote(orderDetail.getNote());
         ghtkOrderDetail.setId(orderDetail.getOrderId());

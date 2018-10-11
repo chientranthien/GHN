@@ -16,9 +16,33 @@ public class GhtkOrderDetail {
     @NotNull
     private Integer pickupMoney;
 
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    @JsonProperty("value")
+    @NotNull
+    private Integer value;
+
     @JsonProperty("pick_address")
     @NotNull
     private String pickupAddress;
+
+    @JsonProperty("pick_address_id")
+    @NotNull
+    private String pickupAddressId;
+
+    public String getPickupAddressId() {
+        return pickupAddressId;
+    }
+
+    public void setPickupAddressId(String pickupAddressId) {
+        this.pickupAddressId = pickupAddressId;
+    }
 
     @JsonProperty("pick_province")
     @NotNull
@@ -27,6 +51,18 @@ public class GhtkOrderDetail {
     @JsonProperty("pick_district")
     @NotNull
     private String pickupDistrict;
+
+    @JsonProperty("pick_ward")
+    @NotNull
+    private String pickupWard;
+
+    public String getPickupWard() {
+        return pickupWard;
+    }
+
+    public void setPickupWard(String pickupWard) {
+        this.pickupWard = pickupWard;
+    }
 
     @JsonProperty("pick_tel")
     @NotNull
@@ -48,6 +84,10 @@ public class GhtkOrderDetail {
     @JsonProperty("district")
     @NotNull
     private String dropDistrict;
+
+    @JsonProperty("ward")
+    @NotNull
+    private String dropWard;
 
     @JsonProperty("tel")
     @NotNull
@@ -192,5 +232,11 @@ public class GhtkOrderDetail {
         this.id = id;
     }
 
+    public String getDropWard() {
+        return dropWard;
+    }
 
+    public void setDropWard(String dropWard) {
+        this.dropWard = dropWard;
+    }
 }

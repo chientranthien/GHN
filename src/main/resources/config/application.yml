@@ -3,13 +3,23 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/dlf?useUnicode=yes&characterEncoding=UTF-8
     username: root
-    password: manager
+    password: dalafarm
   jackson:
     parser:
       ALLOW_UNQUOTED_CONTROL_CHARS: true
 
-dalafarm:
-  name: DalaFarm
-  districtId: 772
-  address: 317 Lô D, chung cư Lạc Long Quân, đường Tống Văn Trân
-  tel: 0941336174 - 0906951498
+pickup_addr:
+  tran_van_quang:
+    id: 1603232
+    name: Vũ
+    districtId: 766
+    ward: Phường 10
+    address: 66/19/42 Trần Văn Quang
+    tel: "0905551287"
+  quach_van_tuan:
+    id: 1333166
+    name: DalaFarm
+    districtId: 766
+    ward: Phường 12
+    address: 39 Quách Văn Tuấn
+    tel: "0934737976"

@@ -2,8 +2,10 @@ package com.dalafarm.vendor.controller;
 
 import com.dalafarm.vendor.model.District;
 import com.dalafarm.vendor.model.Province;
+import com.dalafarm.vendor.model.Ward;
 import com.dalafarm.vendor.repository.DistrictRepository;
 import com.dalafarm.vendor.repository.ProvinceRepository;
+import com.dalafarm.vendor.repository.WardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +26,9 @@ public class LocationController {
     @Autowired
     DistrictRepository districtRepository;
 
+    @Autowired
+    WardRepository wardRepository;
+
     @RequestMapping(value = "provinces",method = RequestMethod.GET)
     Iterable<Province> getAll() {
         return provinceRepository.findAll();
@@ -32,6 +37,11 @@ public class LocationController {
     @RequestMapping(value = "province/{provinceId}/districts", method = RequestMethod.GET)
     Iterable<District> getByProvinceId(@PathVariable String provinceId) {
         return districtRepository.findByProvinceId(provinceId);
+    }
+
+    @RequestMapping(value = "province/{districtId}/wards", method = RequestMethod.GET)
+    Iterable<Ward> getWardByProvinceId(@PathVariable String districtId) {
+        return wardRepository.findWardByDistrictId(districtId);
     }
 
 }

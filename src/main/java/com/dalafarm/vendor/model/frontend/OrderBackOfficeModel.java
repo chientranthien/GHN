@@ -28,4 +28,6 @@ public class OrderBackOfficeModel {
 
     private String status;
 
+    private String address;
+
 }

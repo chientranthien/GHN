@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created by Vu on 8/13/2017.
@@ -84,6 +85,12 @@ public class OrderController {
         Order order = orderModelMapper.toOrder(orderModel);
         LogisticService logisticService = getLogisticServiceBasedOnOrder(order);
         return logisticService.createOrder(order);
+    }
+
+    @PostMapping(value = "orders")
+    public void orderMultiple(@RequestBody @Valid List<OrderModel> orderModels) {
+        log.info("Creating multiple orders");
+        orderModels.forEach(this::order);
     }
 
     @PutMapping(value = "order")

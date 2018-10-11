@@ -7,7 +7,9 @@ import com.dalafarm.vendor.model.Product;
 import com.dalafarm.vendor.model.frontend.OrderBackOfficeModel;
 import com.dalafarm.vendor.model.frontend.OrderModel;
 import com.dalafarm.vendor.model.frontend.ProductModel;
+import com.dalafarm.vendor.repository.DistrictRepository;
 import com.dalafarm.vendor.repository.ProductRepository;
+import com.dalafarm.vendor.repository.ProvinceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,16 +29,22 @@ import java.util.stream.StreamSupport;
 @Slf4j
 @Service
 public class OrderModelMapper {
-    @Value("${dalafarm.name}")
+    @Value("${pickup_addr.tran_van_quang.name}")
     public String fromPersonDefault;
 
-    @Value("${dalafarm.address}")
+    @Value("${pickup_addr.tran_van_quang.id}")
+    public String pickupAddressIdDefault;
+
+    @Value("${pickup_addr.tran_van_quang.address}")
     public String pickupAddressDefault;
 
-    @Value("${dalafarm.districtId}")
+    @Value("${pickup_addr.tran_van_quang.districtId}")
     public String pickupDistrictIdDefault;
 
-    @Value("${dalafarm.tel}")
+    @Value("${pickup_addr.tran_van_quang.ward}")
+    public String pickupWardDefault;
+
+    @Value("${pickup_addr.tran_van_quang.tel}")
     public String pickupTelDefault;
 
     @Autowired
@@ -44,6 +52,9 @@ public class OrderModelMapper {
 
     @Autowired
     private StatusMapper statusMapper;
+
+    @Autowired
+    private LocationService locationService;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
 
@@ -69,13 +80,18 @@ public class OrderModelMapper {
         orderDetail.setOrderId(orderModel.getOrderId());
         orderDetail.setFromPerson(fromPersonDefault);
         orderDetail.setGrandTotal(orderModel.getSubtotal());
+        orderDetail.setPickupAddressId(pickupAddressIdDefault);
         orderDetail.setPickupAddress(pickupAddressDefault);
         orderDetail.setPickupDistrictId(pickupDistrictIdDefault);
         orderDetail.setPickupTel(pickupTelDefault);
+        orderDetail.setPickupWard(pickupWardDefault);
 
         orderDetail.setToPerson(orderModel.getInfo().getName());
         orderDetail.setDropAddress(orderModel.getInfo().getAddress());
+        orderDetail.setDropDistrict(orderModel.getInfo().getDistrict());
         orderDetail.setDropDistrictId(orderModel.getInfo().getDistrictId());
+        orderDetail.setDropWardId(orderModel.getInfo().getWardId());
+        orderDetail.setDropWard(orderModel.getInfo().getWard());
         orderDetail.setDropTel(orderModel.getInfo().getPhone1());
         orderDetail.setDropEmail(orderModel.getInfo().getEmail());
 
@@ -83,6 +99,13 @@ public class OrderModelMapper {
         orderDetail.setValue(orderModel.getSubtotal());
         orderDetail.setVendorId(orderModel.getShippingVendor());
         orderDetail.setShippingFee(Integer.parseInt(orderModel.getShippingCost()));
+        if(orderModel.getStatus() != null && !orderModel.getStatus().isEmpty()) {
+            try {
+                orderDetail.setStatusId(Integer.parseInt(orderModel.getStatus()));
+            } catch (NumberFormatException e) {
+                ;//do nothing
+            }
+        }
         return orderDetail;
     }
 
@@ -110,8 +133,19 @@ public class OrderModelMapper {
         orderBackOfficeModel.setOrderProducts(order.getOrderProducts());
         orderBackOfficeModel.setCreatedDate(order.getCreatedDate());
         orderBackOfficeModel.setLastModifiedDate(order.getLastModifiedDate());
+        orderBackOfficeModel.setAddress(getFullAddress(order));
         Integer statusCode = order.getOrderDetail().getStatusId();
         orderBackOfficeModel.setStatus(statusMapper.getHumanReadableStatus(statusCode));
         return orderBackOfficeModel;
+    }
+
+    private String getFullAddress(Order order) {
+        StringBuilder fullAddress = new StringBuilder();
+        fullAddress.append(order.getOrderDetail().getDropAddress())
+                .append(", ")
+                .append(order.getOrderDetail().getDropWard())
+                .append(", ")
+                .append(locationService.getDistrictNProvinceAsStr(order.getOrderDetail().getDropDistrictId()));
+        return fullAddress.toString();
     }
 }
