@@ -7,7 +7,9 @@ import com.dalafarm.vendor.model.Product;
 import com.dalafarm.vendor.model.frontend.OrderBackOfficeModel;
 import com.dalafarm.vendor.model.frontend.OrderModel;
 import com.dalafarm.vendor.model.frontend.ProductModel;
+import com.dalafarm.vendor.repository.DistrictRepository;
 import com.dalafarm.vendor.repository.ProductRepository;
+import com.dalafarm.vendor.repository.ProvinceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,6 +52,9 @@ public class OrderModelMapper {
 
     @Autowired
     private StatusMapper statusMapper;
+
+    @Autowired
+    private LocationService locationService;
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy HH:mm");
 
@@ -128,8 +133,19 @@ public class OrderModelMapper {
         orderBackOfficeModel.setOrderProducts(order.getOrderProducts());
         orderBackOfficeModel.setCreatedDate(order.getCreatedDate());
         orderBackOfficeModel.setLastModifiedDate(order.getLastModifiedDate());
+        orderBackOfficeModel.setAddress(getFullAddress(order));
         Integer statusCode = order.getOrderDetail().getStatusId();
         orderBackOfficeModel.setStatus(statusMapper.getHumanReadableStatus(statusCode));
         return orderBackOfficeModel;
+    }
+
+    private String getFullAddress(Order order) {
+        StringBuilder fullAddress = new StringBuilder();
+        fullAddress.append(order.getOrderDetail().getDropAddress())
+                .append(", ")
+                .append(order.getOrderDetail().getDropWard())
+                .append(", ")
+                .append(locationService.getDistrictNProvinceAsStr(order.getOrderDetail().getDropDistrictId()));
+        return fullAddress.toString();
     }
 }

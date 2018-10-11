@@ -26,15 +26,15 @@
                 <th>Tên khách hàng</th>
                 <th>Số điện thoại</th>
                 <th>Địa chỉ</th>
-                <th>Quận Huyện</th>
+                <!--<th>Quận Huyện</th>-->
                 <!--<th>Tỉnh Thành</th>-->
                 <th>Tổng tiền</th>
                 <th>Ghi chú</th>
                 <th>Trạng thái</th>
                 <th>Sản phẩm</th>
-                <th>Dự kiến lấy hàng</th>
-                <th>Dự kiến giao hàng</th>
-                <th>Lần cuối cập nhật</th>
+                <!--<th>Dự kiến lấy hàng</th>-->
+                <!--<th>Dự kiến giao hàng</th>-->
+                <!--<th>Lần cuối cập nhật</th>-->
                 <th>Thao tác</th>
             </thead>
             <tbody>
@@ -44,8 +44,8 @@
                     <td th:text="${order.orderDetail.vendorOrderId}"></td>
                     <td th:text="${order.orderDetail.toPerson}"></td>
                     <td th:text="${order.orderDetail.dropTel}"></td>
-                    <td th:text="${order.orderDetail.dropAddress}"></td>
-                    <td th:text="${order.orderDetail.dropDistrictId}"></td>
+                    <td th:text="${order.address}"></td>
+                    <!--<td th:text="${order.orderDetail.dropDistrictId}"></td>-->
                     <!--<td th:text="${order.orderDetail.dropProvince}"></td>-->
                     <td th:text="${#numbers.formatDecimal(order.orderDetail.grandTotal, 0, 'COMMA', 0, 'POINT')}"></td>
                     <td th:text="${order.orderDetail.note}"></td>
@@ -67,10 +67,10 @@
                             </tbody>
                         </table>
                     </td>
-                    <td th:text="${order.orderDetail.estimatedPickupTime}"></td>
-                    <td th:text="${order.orderDetail.estimatedDeliverTime}"></td>
-                    <td th:text="${order.lastModifiedDate != null? displayDateFormatter.format(order.lastModifiedDate): ' '}"></td>
-                    <td><a th:if="${order.orderDetail.statusId == 4}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng đơn hàng</a>
+                    <!--<td th:text="${order.orderDetail.estimatedPickupTime}"></td>-->
+                    <!--<td th:text="${order.orderDetail.estimatedDeliverTime}"></td>-->
+                    <!--<td th:text="${order.lastModifiedDate != null? displayDateFormatter.format(order.lastModifiedDate): ' '}"></td>-->
+                    <td><a th:if="${order.orderDetail.statusId == 4}" target="_blank" th:href="@{/v1/order/{id}/activate(id=${order.id})}">Đăng GHTK</a>
                         <a th:if="${order.orderDetail.statusId == 5}" target="_blank" th:href="@{/v1/order/{id}/cancel(id=${order.id})}">Hủy đơn hàng</a>
                         <a target="_blank" th:href="@{/edit-order/{id}(id=${order.orderDetail.orderId})}">Sửa đơn hàng</a>
                     </td>
