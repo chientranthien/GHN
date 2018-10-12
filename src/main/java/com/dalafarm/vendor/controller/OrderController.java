@@ -29,6 +29,7 @@ import java.util.List;
 @Slf4j
 public class OrderController {
 
+    public static final int COMPLETED_ORDER_STATUS = 6;
     @Autowired
     OrderRepository orderRepository;
 
@@ -95,6 +96,15 @@ public class OrderController {
 
     @PutMapping(value = "order")
     public void updateOrderStatus(@RequestBody @Valid OrderStatusRequest orderStatusRequest){
+        orderService.updateOrderStatus(orderStatusRequest);
+    }
+
+    @PutMapping(value = "order/{orderId}/status/shipped")
+    public void updateOrderStatusAsShipped(@PathVariable String orderId){
+        OrderStatusRequest orderStatusRequest = new OrderStatusRequest();
+        orderStatusRequest.setOrderId(orderId);
+        orderStatusRequest.setStatusId(COMPLETED_ORDER_STATUS);
+        orderStatusRequest.setVendorOrderId("DIRECT");
         orderService.updateOrderStatus(orderStatusRequest);
     }
 
